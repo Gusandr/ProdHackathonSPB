@@ -1,7 +1,7 @@
 package com.example.prodhackathonspb.di
 
 import com.example.prodhackathonspb.network.GetUserService
-import com.example.prodhackathonspb.network.PostUserService
+import com.example.prodhackathonspb.network.SignInService
 import com.example.prodhackathonspb.network.ServerStatusService
 import com.example.prodhackathonspb.network.SignUpService
 import com.example.prodhackathonspb.repository.Repository
@@ -26,9 +26,10 @@ object DomainModule {
     fun provideRepository(
         service: ServerStatusService,
         serviceGetUser: GetUserService,
-        serviceSignUpService: SignUpService
+        serviceSignUpService: SignUpService,
+        serviceSignInService: SignInService,
     ): Repository {
-        return Repository(service, serviceGetUser, serviceSignUpService)
+        return Repository(service, serviceGetUser, serviceSignUpService, serviceSignInService)
     }
 
     @Provides
@@ -39,8 +40,8 @@ object DomainModule {
 
     @Provides
     @Singleton
-    fun providePostUser(retrofit: Retrofit): PostUserService {
-        return retrofit.create(PostUserService::class.java)
+    fun providePostUser(retrofit: Retrofit): SignInService {
+        return retrofit.create(SignInService::class.java)
     }
 
     @Provides
