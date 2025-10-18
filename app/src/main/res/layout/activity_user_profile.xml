@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2B2B2B">
+    android:background="#0E0E0E">
 
     <ImageView
         android:id="@+id/imageButtonBack"
@@ -30,7 +30,7 @@
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/fragment_card_for_main_menu"
+        android:background="@drawable/fragment_background_default_pole"
         android:layout_marginHorizontal="25dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,28 +40,72 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="20dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/imageUserIcon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/icon_user_profile_default" />
 
             <TextView
-                android:id="@+id/textMail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_light"
-                android:text="Почта"
-                android:textColor="@color/white"
-                android:textSize="11sp" />
-
-            <TextView
-                android:id="@+id/textUserRealMail"
+                android:id="@+id/textUserMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="I1ce0ne@yandex.ru"
-                android:textSize="15sp"
-                android:textColor="@color/white" />
+                android:gravity="center_horizontal"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="7.5dp"
+                android:text="ivan.popov.@example.com"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <FrameLayout
+                android:id="@+id/buttonLogout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/fragment_button_default"
+                app:layout_constraintBottom_toTopOf="@+id/linearForGoingToSignUp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/textLogout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Выйти"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/buttonDeleteAccount"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/fragment_button_default"
+                app:layout_constraintBottom_toTopOf="@+id/linearForGoingToSignUp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/textEDeleteAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Удалить аккаунт"
+                    android:textSize="14sp"
+                    android:textColor="#FFFFFF" />
+            </FrameLayout>
         </LinearLayout>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
