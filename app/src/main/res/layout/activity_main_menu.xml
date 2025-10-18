@@ -43,11 +43,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adminHeaderPanel"
-        android:layout_marginBottom="25dp">
+        app:layout_constraintTop_toBottomOf="@id/adminHeaderPanel">
 
         <LinearLayout
             android:id="@+id/adminContentContainer"
@@ -70,24 +70,18 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
-            <HorizontalScrollView
+            <!-- Горизонтальный список карточек на RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/groupCardsRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="20dp">
-
-                    <include layout="@layout/fragment_group_card_main_menu" />
-                    <include layout="@layout/fragment_group_card_main_menu" />
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+                android:overScrollMode="never"
+                android:clipToPadding="false"
+                android:paddingStart="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/fragment_group_card_main_menu"
+                tools:itemCount="6" />
 
             <!-- Карточка быстрых ссылок -->
             <FrameLayout

@@ -257,7 +257,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Регистрация"
+        android:text="Зарегистрироваться"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/poleForNumber"
