@@ -81,7 +81,7 @@
                 android:paddingStart="20dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/fragment_group_card_main_menu"
-                tools:itemCount="6" />
+                tools:itemCount="4" />
 
             <!-- Карточка быстрых ссылок -->
             <FrameLayout
