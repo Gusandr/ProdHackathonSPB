@@ -73,38 +73,39 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        // Настройки полей ввода (шрифт для текста задавай в xml)
-
-        binding.editTextMail.setText("")
-        // hint задан выше
+        // Устанавливаем hint для полей ввода
+        binding.editTextMail.apply {
+            setText("")
+            hint = "Почта"
+        }
 
         binding.editTextPassword.apply {
             setText("")
-            // hint задан выше
+            hint = "Пароль"
             inputType = android.text.InputType.TYPE_CLASS_TEXT or
                     android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
+        // ВХОД - кнопка продолжить
         binding.buttonEntranceWithMail.setOnClickListener {
             val email = binding.editTextMail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
 
             if (validateInput(email, password)) {
-                viewModel.signIn(email, password)
+                viewModel.signIn(email, password)  // Используем signIn для входа
             }
         }
 
+        // Переход на экран регистрации
         binding.textView3.setOnClickListener {
             navigateToSignUp()
         }
 
-        binding.textIfNotHaveAccount.setOnClickListener {
-            navigateToSignUp()
-        }
-
+        // Очистка при изменении
         binding.editTextMail.doAfterTextChanged {
             // Можно добавить логику
         }
+
         binding.editTextPassword.doAfterTextChanged {
             // Можно добавить логику
         }
@@ -148,6 +149,7 @@ class LoginActivity : AppCompatActivity() {
                             "Вход выполнен успешно!",
                             Toast.LENGTH_SHORT
                         ).show()
+
                         navigateToMain()
                     }
                 }
@@ -192,8 +194,9 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
+
     private fun navigateToSignUp() {
-        val intent = Intent(this, SignUpActivity::class.java)
-        startActivity(intent)
+         val intent = Intent(this, SignUpActivity::class.java)
+         startActivity(intent)
     }
 }

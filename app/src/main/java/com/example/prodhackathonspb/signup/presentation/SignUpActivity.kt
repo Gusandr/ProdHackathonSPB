@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
@@ -102,14 +101,12 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
+        // Переход на экран входа
         binding.textView3.setOnClickListener {
             navigateToLogin()
         }
 
-        binding.textIfNotHaveAccount.setOnClickListener {
-            navigateToLogin()
-        }
-
+        // Очистка при вводе
         binding.editTextNumber.doAfterTextChanged { }
         binding.editTextUserName.doAfterTextChanged { }
         binding.editTextPassword.doAfterTextChanged { }
@@ -132,12 +129,14 @@ class SignUpActivity : AppCompatActivity() {
                 // Загрузка
                 launch {
                     viewModel.isLoading.collect { isLoading ->
+                        // Блокируем/разблокируем UI
                         binding.buttonEntranceWithMail.isEnabled = !isLoading
                         binding.editTextNumber.isEnabled = !isLoading
                         binding.editTextUserName.isEnabled = !isLoading
                         binding.editTextPassword.isEnabled = !isLoading
                         binding.textView3.isEnabled = !isLoading
 
+                        // Меняем текст кнопки
                         binding.textEntranceWithMail.text = if (isLoading) {
                             "Загрузка..."
                         } else {
@@ -154,6 +153,7 @@ class SignUpActivity : AppCompatActivity() {
                             "Регистрация выполнена успешно!",
                             Toast.LENGTH_SHORT
                         ).show()
+
                         navigateToMain()
                     }
                 }
