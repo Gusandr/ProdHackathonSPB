@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="#2B2B2B">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phoneInputLayout"
@@ -20,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:textColorHint="@color/black"/>
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -29,7 +31,7 @@
         android:layout_height="wrap_content"
         android:text="Ещё не зарегистрированы?"
         android:textSize="16sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
