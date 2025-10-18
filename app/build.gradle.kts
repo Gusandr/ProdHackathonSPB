@@ -1,35 +1,23 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.pluginSerialization)
-
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
 }
 
 android {
     namespace = "com.example.prodhackathonspb"
-    compileSdk = 36
+    compileSdk = 35  // Используйте 35, а не 36
 
     defaultConfig {
         applicationId = "com.example.prodhackathonspb"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35  // Используйте 35, а не 36
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true"
-                )
-            }
-        }
     }
 
     buildTypes {
@@ -41,34 +29,36 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 
     buildFeatures {
         viewBinding = true
     }
-
-    kapt {
-        correctErrorTypes = true
-    }
 }
 
 dependencies {
-
-    //UI
+    // AndroidX Core
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
-    implementation(libs.view.binding)
+    implementation(libs.activity.ktx)
+
+    // Lifecycle
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
 
     // Retrofit
     implementation(libs.retrofit)
+    implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit.kotlinx.serialization.converter)
@@ -82,21 +72,22 @@ dependencies {
     ksp(libs.room.compiler)
     implementation(libs.room.ktx)
 
-    // Jetpack Navigation
-    implementation(libs.navigation.graph.fragment)
-    implementation(libs.navigation.graph.ui)
-//    implementation(libs.navigation.graph.safeargs)
+    // Navigation
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
 
-    // Hilt
+    // Hilt - ВАЖНО: используем KSP, не KAPT
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    // KSP
-    //implementation(libs.ksp.symbol.processing) как сказал гпт - лишнее
+    // Security (опционально, если нужен)
+    implementation(libs.encrypted.prefs.ktx)
+
+    // DataStore (рекомендуется вместо EncryptedSharedPreferences)
+    implementation(libs.datastore.preferences)
 
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
 }

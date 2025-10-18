@@ -4,6 +4,6 @@ import retrofit2.http.GET
 
 
 interface ServerStatusService {
-    @GET("status")
+    @GET("healthcheck")
     suspend fun getStatus()
 }
