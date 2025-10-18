@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#2B2B2B">
 
     <LinearLayout
@@ -101,6 +101,8 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="5dp"
             android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/montserrat_light"
             android:gravity="start"
             android:text="Войти"
@@ -112,9 +114,11 @@
         android:id="@+id/buttonEntranceWithMail"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="20dp"
         android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/fragment_entrance_with_mail"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toTopOf="@+id/linearForGoingToSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -125,11 +129,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_regular"
-            android:text="Продолжить"
-            android:textColor="#FFFFFF" />
+            android:text="Зарегистрироваться"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
     </FrameLayout>
 
-    <!-- Поле для ввода номера -->
     <ImageView
         android:id="@+id/imageLogotypeMeme"
         android:layout_width="55dp"
@@ -155,30 +159,20 @@
         app:layout_constraintStart_toEndOf="@+id/imageLogotypeMeme"
         app:layout_constraintTop_toTopOf="@+id/imageLogotypeMeme">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/editTextNumber"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/editTextNumber"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="18dp"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:fontFamily="@font/montserrat_regular"
-                android:inputType="text"
-                android:text="Почта"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="18dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/montserrat_regular"
+            android:hint="Почта"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textColorHint="#AFAFAF"
+            android:textSize="15sp" />
     </FrameLayout>
 
-    <!-- Поле для ввода номера -->
     <FrameLayout
         android:id="@+id/poleForPassword"
         android:layout_width="0dp"
@@ -191,30 +185,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/editTextUserName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/editTextUserName"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="18dp"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:fontFamily="@font/montserrat_regular"
-                android:inputType="text"
-                android:text="Пароль"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="18dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/montserrat_regular"
+            android:hint="Пароль"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="#AFAFAF"
+            android:textSize="15sp" />
     </FrameLayout>
 
-    <!-- Поле для ввода номера -->
     <FrameLayout
         android:id="@+id/poleForPasswordAgain"
         android:layout_width="0dp"
@@ -227,27 +211,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="18dp"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:fontFamily="@font/montserrat_regular"
-                android:inputType="text"
-                android:text="Повторите пароль"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="18dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/montserrat_regular"
+            android:hint="Повторите пароль"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="#AFAFAF"
+            android:textSize="15sp" />
     </FrameLayout>
 
     <TextView
@@ -257,11 +232,10 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="Зарегистрироваться"
+        android:text="Регистрация"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/poleForNumber"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

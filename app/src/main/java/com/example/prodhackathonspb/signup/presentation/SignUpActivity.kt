@@ -1,4 +1,4 @@
-package com.example.prodhackathonspb.login.presentation
+package com.example.prodhackathonspb.signup.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,23 +12,24 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.prodhackathonspb.databinding.ActivityEntranceLoginBinding
+import com.example.prodhackathonspb.databinding.ActivityEntranceSignUpBinding
+import com.example.prodhackathonspb.login.presentation.LoginActivity
+import com.example.prodhackathonspb.login.presentation.LoginViewModel
 import com.example.prodhackathonspb.main.presentation.MainActivity
-import com.example.prodhackathonspb.signup.presentation.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityEntranceLoginBinding
+    private lateinit var binding: ActivityEntranceSignUpBinding
     private val viewModel by viewModels<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityEntranceLoginBinding.inflate(layoutInflater)
+        binding = ActivityEntranceSignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
@@ -43,41 +44,46 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupViews() {
         // Устанавливаем hint для полей ввода
-        binding.editTextMail.apply {
+        binding.editTextNumber.apply {
             setText("")
             hint = "Почта"
+            inputType = android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         }
 
-        binding.editTextPassword.apply {
+        binding.editTextUserName.apply {
             setText("")
             hint = "Пароль"
             inputType = android.text.InputType.TYPE_CLASS_TEXT or
                     android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
-        // ВХОД - кнопка продолжить
-        binding.buttonEntranceWithMail.setOnClickListener {
-            val email = binding.editTextMail.text.toString().trim()
-            val password = binding.editTextPassword.text.toString().trim()
+        binding.editTextPassword.apply {
+            setText("")
+            hint = "Повторите пароль"
+            inputType = android.text.InputType.TYPE_CLASS_TEXT or
+                    android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+        }
 
-            if (validateInput(email, password)) {
-                viewModel.signIn(email, password)  // Используем signIn для входа
+        // РЕГИСТРАЦИЯ - кнопка продолжить
+        binding.buttonEntranceWithMail.setOnClickListener {
+            val email = binding.editTextNumber.text.toString().trim()
+            val password = binding.editTextUserName.text.toString().trim()
+            val passwordConfirm = binding.editTextPassword.text.toString().trim()
+
+            if (validateInput(email, password, passwordConfirm)) {
+                viewModel.signUp(email, password)
             }
         }
 
-        // Переход на экран регистрации
+        // Переход на экран входа
         binding.textView3.setOnClickListener {
-            navigateToSignUp()
+            navigateToLogin()
         }
 
-        // Очистка при изменении
-        binding.editTextMail.doAfterTextChanged {
-            // Можно добавить логику
-        }
-
-        binding.editTextPassword.doAfterTextChanged {
-            // Можно добавить логику
-        }
+        // Очистка при вводе
+        binding.editTextNumber.doAfterTextChanged { }
+        binding.editTextUserName.doAfterTextChanged { }
+        binding.editTextPassword.doAfterTextChanged { }
     }
 
     private fun observeViewModel() {
@@ -87,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
                 launch {
                     viewModel.showNetworkError.collect { message ->
                         Toast.makeText(
-                            this@LoginActivity,
+                            this@SignUpActivity,
                             message,
                             Toast.LENGTH_LONG
                         ).show()
@@ -97,15 +103,18 @@ class LoginActivity : AppCompatActivity() {
                 // Загрузка
                 launch {
                     viewModel.isLoading.collect { isLoading ->
+                        // Блокируем/разблокируем UI
                         binding.buttonEntranceWithMail.isEnabled = !isLoading
-                        binding.editTextMail.isEnabled = !isLoading
+                        binding.editTextNumber.isEnabled = !isLoading
+                        binding.editTextUserName.isEnabled = !isLoading
                         binding.editTextPassword.isEnabled = !isLoading
                         binding.textView3.isEnabled = !isLoading
 
+                        // Меняем текст кнопки
                         binding.textEntranceWithMail.text = if (isLoading) {
                             "Загрузка..."
                         } else {
-                            "Продолжить"
+                            "Зарегистрироваться"
                         }
                     }
                 }
@@ -114,8 +123,8 @@ class LoginActivity : AppCompatActivity() {
                 launch {
                     viewModel.loginSuccess.collect {
                         Toast.makeText(
-                            this@LoginActivity,
-                            "Вход выполнен успешно!",
+                            this@SignUpActivity,
+                            "Регистрация выполнена успешно!",
                             Toast.LENGTH_SHORT
                         ).show()
 
@@ -126,22 +135,28 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateInput(email: String, password: String): Boolean {
+    private fun validateInput(
+        email: String,
+        password: String,
+        passwordConfirm: String
+    ): Boolean {
         var isValid = true
 
+        // Проверка email
         if (email.isBlank()) {
             Toast.makeText(this, "Введите email", Toast.LENGTH_SHORT).show()
-            binding.editTextMail.requestFocus()
+            binding.editTextNumber.requestFocus()
             isValid = false
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Неверный формат email", Toast.LENGTH_SHORT).show()
-            binding.editTextMail.requestFocus()
+            binding.editTextNumber.requestFocus()
             isValid = false
         }
 
+        // Проверка пароля
         if (password.isBlank() && isValid) {
             Toast.makeText(this, "Введите пароль", Toast.LENGTH_SHORT).show()
-            binding.editTextPassword.requestFocus()
+            binding.editTextUserName.requestFocus()
             isValid = false
         } else if (password.length < 6 && isValid) {
             Toast.makeText(
@@ -149,6 +164,17 @@ class LoginActivity : AppCompatActivity() {
                 "Пароль должен быть минимум 6 символов",
                 Toast.LENGTH_SHORT
             ).show()
+            binding.editTextUserName.requestFocus()
+            isValid = false
+        }
+
+        // Проверка подтверждения пароля
+        if (passwordConfirm.isBlank() && isValid) {
+            Toast.makeText(this, "Повторите пароль", Toast.LENGTH_SHORT).show()
+            binding.editTextPassword.requestFocus()
+            isValid = false
+        } else if (password != passwordConfirm && isValid) {
+            Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show()
             binding.editTextPassword.requestFocus()
             isValid = false
         }
@@ -158,14 +184,13 @@ class LoginActivity : AppCompatActivity() {
 
     private fun navigateToMain() {
         val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
     }
 
-
-    private fun navigateToSignUp() {
-         val intent = Intent(this, SignUpActivity::class.java)
-         startActivity(intent)
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

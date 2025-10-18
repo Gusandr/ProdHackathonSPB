@@ -15,11 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DomainModule {
-    @Provides
-    @Singleton
-    fun provideServerStatus(retrofit: Retrofit): ServerStatusService {
-        return retrofit.create(ServerStatusService::class.java)
-    }
 
     @Provides
     @Singleton
@@ -30,23 +25,5 @@ object DomainModule {
         serviceSignInService: SignInService,
     ): Repository {
         return Repository(service, serviceGetUser, serviceSignUpService, serviceSignInService)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetUser(retrofit: Retrofit): GetUserService {
-        return retrofit.create(GetUserService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun providePostUser(retrofit: Retrofit): SignInService {
-        return retrofit.create(SignInService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSignUp(retrofit: Retrofit): SignUpService {
-        return retrofit.create(SignUpService::class.java)
     }
 }
