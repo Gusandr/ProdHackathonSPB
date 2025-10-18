@@ -28,11 +28,12 @@
         app:layout_constraintTop_toBottomOf="@+id/imageButtonBack" />
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/fragment_background_default_pole"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/fragment_background_default_pole"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textProfile">
@@ -40,34 +41,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageUserIcon"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="30dp"
-                app:srcCompat="@drawable/icon_user_profile_default" />
+                app:srcCompat="@drawable/icon_logotype_alex_meme" />
 
             <TextView
                 android:id="@+id/textUserMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_medium"
-                android:gravity="center_horizontal"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="7.5dp"
-                android:text="ivan.popov.@example.com"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_horizontal"
+                android:text="dog.git.@alex.com"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <FrameLayout
                 android:id="@+id/buttonLogout"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="50dp"
                 android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/fragment_button_default"
                 app:layout_constraintBottom_toTopOf="@+id/linearForGoingToSignUp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,10 +88,10 @@
             <FrameLayout
                 android:id="@+id/buttonDeleteAccount"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="25dp"
-                android:layout_marginHorizontal="30dp"
                 android:background="@drawable/fragment_button_default"
                 app:layout_constraintBottom_toTopOf="@+id/linearForGoingToSignUp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -106,6 +107,138 @@
                     android:textColor="#FFFFFF"
                     android:textSize="13sp" />
             </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayoutCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/fragment_background_default_pole"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_light"
+                android:text="Приглашение в группу"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/icon_plus_purple" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="От: Вася Пупкин"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/icon_user_group" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Группа 1"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <FrameLayout
+                    android:id="@+id/buttonDecline"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/fragment_button_default">
+
+                    <TextView
+                        android:id="@+id/textDecline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Принять"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/buttonAccept"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/fragment_button_default">
+
+                    <TextView
+                        android:id="@+id/textAccept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Отклонить"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp" />
+                </FrameLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
