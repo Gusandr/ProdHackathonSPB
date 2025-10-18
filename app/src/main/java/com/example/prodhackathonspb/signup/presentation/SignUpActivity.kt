@@ -107,11 +107,36 @@ class SignUpActivity : AppCompatActivity() {
             navigateToLogin()
         }
 
+        binding.buttonFastSignUp.setOnClickListener {
+            val email = generateRandomEmail()
+            val password = generateRandomPassword()
+            binding.editTextNumber.setText(email)
+            binding.editTextUserName.setText(password)
+            binding.editTextPassword.setText(password)
+            Toast.makeText(this, "Сгенерированы:\n$email\n$password", Toast.LENGTH_SHORT).show()
+            // Можешь автозапускать регистрацию тут:
+            // viewModel.signUp(email, password)
+        }
+
+
         // Очистка при вводе
         binding.editTextNumber.doAfterTextChanged { }
         binding.editTextUserName.doAfterTextChanged { }
         binding.editTextPassword.doAfterTextChanged { }
     }
+
+    private fun generateRandomEmail(): String {
+        val chars = "abcdefghijklmnopqrstuvwxyz"
+        val login = (1..8).joinToString("") { chars.random().toString() }
+        val domain = listOf("gmail.com", "yandex.ru", "mail.ru", "test.net").random()
+        return "$login${(100..999).random()}@$domain"
+    }
+
+    private fun generateRandomPassword(): String {
+        val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        return (1..10).map { chars.random() }.joinToString("")
+    }
+
 
     private fun observeViewModel() {
         lifecycleScope.launch {
