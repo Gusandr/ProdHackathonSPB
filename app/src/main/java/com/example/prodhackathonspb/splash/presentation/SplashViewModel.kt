@@ -28,8 +28,13 @@ class SplashViewModel @Inject constructor(
                 _authState.value = SplashState.Unauthenticated
                 return@launch
             }
-            // можно также проверить бэкенд-валидность токена: try { repo.getUserService(token)... }
-            _authState.value = SplashState.Authenticated
+            try {
+                // Серверная проверка:
+                repository.getUserService(token)
+                _authState.value = SplashState.Authenticated
+            } catch (e: Exception) {
+                _authState.value = SplashState.Unauthenticated
+            }
         }
     }
 }

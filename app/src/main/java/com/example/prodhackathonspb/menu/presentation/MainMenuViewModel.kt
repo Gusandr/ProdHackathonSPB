@@ -11,31 +11,19 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-data class MainMenuUiState(
-    val userName: String = "",
-    val error: String? = null
-)
-
 @HiltViewModel
 class MainMenuViewModel @Inject constructor(
-    private val tokenHolder: TokenHolder,
-    private val repository: Repository
+    private val repository: Repository,
+    private val tokenHolder: TokenHolder
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MainMenuUiState())
     val uiState: StateFlow<MainMenuUiState> = _uiState.asStateFlow()
 
-    init { loadMainData() }
-
     fun loadMainData() {
         viewModelScope.launch {
             try {
-                // Получить и декодировать токен пользователя (или профиль)
-                val token = tokenHolder.getToken()
-                if (token == null) {
-                    _uiState.value = MainMenuUiState(error = "Требуется авторизация")
-                    return@launch
-                }
+                val token = tokenHolder.getToken() ?: return@launch
                 val user = repository.getUserService(token)
                 val email = user.email ?: ""
                 val username = email.substringBefore("@")
@@ -46,3 +34,8 @@ class MainMenuViewModel @Inject constructor(
         }
     }
 }
+
+data class MainMenuUiState(
+    val userName: String = "",
+    val error: String? = null
+)
