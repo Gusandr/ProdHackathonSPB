@@ -12,7 +12,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/icon_back_button" />
@@ -48,18 +48,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
                 android:layout_marginTop="12dp"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/fragment_background_default_pole">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
                     android:orientation="vertical">
+
                     <ImageView
                         android:id="@+id/imageUserIcon"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
                         android:src="@drawable/icon_user_profile_default" />
+
                     <TextView
                         android:id="@+id/textUserMail"
                         android:layout_width="match_parent"
@@ -71,6 +75,7 @@
                         android:text="DevSquad@yandex.ru"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
+
                     <FrameLayout
                         android:id="@+id/buttonLogout"
                         android:layout_width="match_parent"
@@ -79,6 +84,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="25dp"
                         android:background="@drawable/fragment_button_default">
+
                         <TextView
                             android:id="@+id/textLogout"
                             android:layout_width="wrap_content"
@@ -88,6 +94,7 @@
                             android:text="Выйти"
                             android:textColor="#FFFFFF"
                             android:textSize="13sp" />
+
                     </FrameLayout>
                 </LinearLayout>
             </FrameLayout>
@@ -101,6 +108,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/fragment_background_default_pole"
                 android:visibility="gone">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -108,6 +116,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="20dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
@@ -116,11 +125,13 @@
                         android:text="Приглашение в группу"
                         android:textColor="@color/white"
                         android:textSize="13sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal">
+
                         <ImageView
                             android:id="@+id/imageView"
                             android:layout_width="30dp"
@@ -128,6 +139,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="0"
                             app:srcCompat="@drawable/icon_plus_purple" />
+
                         <TextView
                             android:id="@+id/textView2"
                             android:layout_width="wrap_content"
@@ -140,11 +152,13 @@
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal">
+
                         <ImageView
                             android:id="@+id/imageView3"
                             android:layout_width="30dp"
@@ -152,6 +166,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="0"
                             app:srcCompat="@drawable/icon_user_group" />
+
                         <TextView
                             android:id="@+id/textView24"
                             android:layout_width="wrap_content"
@@ -164,11 +179,13 @@
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal">
+
                         <FrameLayout
                             android:id="@+id/buttonDecline"
                             android:layout_width="0dp"
@@ -176,6 +193,7 @@
                             android:layout_marginTop="7dp"
                             android:layout_weight="1"
                             android:background="@drawable/fragment_button_default">
+
                             <TextView
                                 android:id="@+id/textDecline"
                                 android:layout_width="wrap_content"
@@ -186,6 +204,7 @@
                                 android:textColor="#FFFFFF"
                                 android:textSize="13sp" />
                         </FrameLayout>
+
                         <FrameLayout
                             android:id="@+id/buttonAccept"
                             android:layout_width="0dp"
@@ -194,6 +213,7 @@
                             android:layout_marginTop="7dp"
                             android:layout_weight="1"
                             android:background="@drawable/fragment_button_default">
+
                             <TextView
                                 android:id="@+id/textAccept"
                                 android:layout_width="wrap_content"
@@ -217,6 +237,7 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/fragment_background_default_pole">
+
                 <LinearLayout
                     android:id="@+id/quickAccessLinksContainer"
                     android:layout_width="match_parent"
@@ -225,6 +246,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginVertical="20dp"
                     android:layout_marginHorizontal="25dp">
+
                     <!-- Кнопка: Все группы -->
                     <LinearLayout
                         android:id="@+id/quickAccessGroupsButton"
@@ -232,12 +254,14 @@
                         android:layout_height="60dp"
                         android:orientation="horizontal"
                         android:gravity="center_vertical">
+
                         <ImageView
                             android:id="@+id/quickAccessGroupsIcon"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_weight="0"
                             android:src="@drawable/icon_user_group" />
+
                         <LinearLayout
                             android:id="@+id/quickAccessGroupsTextContainer"
                             android:layout_width="0dp"
@@ -246,6 +270,7 @@
                             android:orientation="vertical"
                             android:layout_marginStart="10dp"
                             android:gravity="center_vertical">
+
                             <TextView
                                 android:id="@+id/quickAccessGroupsTitle"
                                 android:layout_width="match_parent"
@@ -254,6 +279,7 @@
                                 android:text="Группы"
                                 android:textSize="15sp"
                                 android:textColor="@color/white" />
+
                             <TextView
                                 android:id="@+id/quickAccessGroupsSubtitle"
                                 android:layout_width="match_parent"
@@ -263,6 +289,7 @@
                                 android:textSize="13sp"
                                 android:textColor="@color/white" />
                         </LinearLayout>
+
                         <ImageView
                             android:id="@+id/quickAccessGroupsArrow"
                             android:layout_width="15dp"
@@ -273,8 +300,6 @@
                     <!-- Дополнительно: пользователи, отчеты, система — после этого по аналогии -->
                 </LinearLayout>
             </FrameLayout>
-
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

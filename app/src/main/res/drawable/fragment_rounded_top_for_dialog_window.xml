@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Очень мягкая и протяженная тень - почти незаметная -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#03000000" />
+            <corners
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+
+    <!-- Легчайшая тень -->
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#05000000" />
+            <corners
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+
+    <!-- Минимальная тень -->
+    <item android:top="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#08000000" />
+            <corners
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+
+    <!-- Почти незаметная тень -->
+    <item android:top="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0A000000" />
+            <corners
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+
+    <!-- Основной фон - создает тонкий 3D эффект -->
+    <item android:top="5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#191918" />
+            <corners
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
+        </shape>
+    </item>
+
+</layer-list>
