@@ -17,8 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val tokenHolder: TokenHolder,
-    private val repository: Repository
+    private val repository: Repository,
+    private val tokenHolder: TokenHolder
 ) : ViewModel() {
 
     private val _userData = MutableStateFlow<User?>(null)
@@ -38,8 +38,10 @@ class MainViewModel @Inject constructor(
             try {
                 _isLoading.value = true
 
+                // Просто получить токен — он ДОЛЖЕН быть валиден на этом этапе!
                 val token = tokenHolder.getToken()
                 if (token == null) {
+                    // Означает баг в flow приложения — Splash недоработан, но можно сразу логаутить
                     _logoutEvent.emit(Unit)
                     return@launch
                 }
@@ -51,17 +53,6 @@ class MainViewModel @Inject constructor(
                 _errorEvent.emit("Ошибка загрузки данных: ${e.message}")
             } finally {
                 _isLoading.value = false
-            }
-        }
-    }
-
-    fun logout() {
-        viewModelScope.launch {
-            try {
-                tokenHolder.clearToken()
-                _logoutEvent.emit(Unit)
-            } catch (e: Exception) {
-                _errorEvent.emit("Ошибка выхода: ${e.message}")
             }
         }
     }
