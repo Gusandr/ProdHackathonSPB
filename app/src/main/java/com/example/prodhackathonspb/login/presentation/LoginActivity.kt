@@ -1,17 +1,24 @@
 package com.example.prodhackathonspb.login.presentation
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.TextPaint
+import android.text.style.TypefaceSpan
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.prodhackathonspb.R
 import com.example.prodhackathonspb.databinding.ActivityEntranceLoginBinding
 import com.example.prodhackathonspb.main.presentation.MainActivity
 import com.example.prodhackathonspb.signup.presentation.SignUpActivity
@@ -37,44 +44,63 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
+        // Класс для кастомного TypefaceSpan — прямо тут
+        class CustomTypefaceSpan(private val typeface: Typeface) : TypefaceSpan("") {
+            override fun updateDrawState(ds: TextPaint) {
+                ds.typeface = typeface
+            }
+            override fun updateMeasureState(paint: TextPaint) {
+                paint.typeface = typeface
+            }
+        }
+
+        // Применение кастомного Montserrat Regular к hint обоих полей
+        val montserrat = ResourcesCompat.getFont(this, R.font.montserrat_regular) ?: Typeface.DEFAULT
+
+        val hintMail = SpannableString("Почта").apply {
+            setSpan(CustomTypefaceSpan(montserrat), 0, length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        }
+        binding.editTextMail.hint = hintMail
+
+        val hintPass = SpannableString("Пароль").apply {
+            setSpan(CustomTypefaceSpan(montserrat), 0, length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+        }
+        binding.editTextPassword.hint = hintPass
+
+
         setupViews()
         observeViewModel()
     }
 
     private fun setupViews() {
-        // Устанавливаем hint для полей ввода
-        binding.editTextMail.apply {
-            setText("")
-            hint = "Почта"
-        }
+        // Настройки полей ввода (шрифт для текста задавай в xml)
+
+        binding.editTextMail.setText("")
+        // hint задан выше
 
         binding.editTextPassword.apply {
             setText("")
-            hint = "Пароль"
+            // hint задан выше
             inputType = android.text.InputType.TYPE_CLASS_TEXT or
                     android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
-        // ВХОД - кнопка продолжить
         binding.buttonEntranceWithMail.setOnClickListener {
             val email = binding.editTextMail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
 
             if (validateInput(email, password)) {
-                viewModel.signIn(email, password)  // Используем signIn для входа
+                viewModel.signIn(email, password)
             }
         }
 
-        // Переход на экран регистрации
         binding.textView3.setOnClickListener {
             navigateToSignUp()
         }
 
-        // Очистка при изменении
         binding.editTextMail.doAfterTextChanged {
             // Можно добавить логику
         }
-
         binding.editTextPassword.doAfterTextChanged {
             // Можно добавить логику
         }
@@ -118,7 +144,6 @@ class LoginActivity : AppCompatActivity() {
                             "Вход выполнен успешно!",
                             Toast.LENGTH_SHORT
                         ).show()
-
                         navigateToMain()
                     }
                 }
@@ -163,9 +188,8 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
-
     private fun navigateToSignUp() {
-         val intent = Intent(this, SignUpActivity::class.java)
-         startActivity(intent)
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
     }
 }
