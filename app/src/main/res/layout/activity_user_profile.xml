@@ -58,7 +58,7 @@
                         android:id="@+id/imageUserIcon"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="20dp"
                         android:src="@drawable/icon_user_profile_default" />
                     <TextView
                         android:id="@+id/textUserMail"
