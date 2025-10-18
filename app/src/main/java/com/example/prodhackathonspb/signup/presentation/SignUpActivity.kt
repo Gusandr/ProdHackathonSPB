@@ -1,11 +1,16 @@
 package com.example.prodhackathonspb.signup.presentation
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.TextPaint
+import android.text.style.TypefaceSpan
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
@@ -38,33 +43,55 @@ class SignUpActivity : AppCompatActivity() {
             insets
         }
 
-        setupViews()
-        observeViewModel()
-    }
+        // Вложенный CustomTypefaceSpan — всё тут, как просил
+        class CustomTypefaceSpan(private val typeface: Typeface) : TypefaceSpan("") {
+            override fun updateDrawState(ds: TextPaint) {
+                ds.typeface = typeface
+            }
+            override fun updateMeasureState(paint: TextPaint) {
+                paint.typeface = typeface
+            }
+        }
 
-    private fun setupViews() {
-        // Устанавливаем hint для полей ввода
+        // Получаем Montserrat Regular из res/font
+        val montserrat = ResourcesCompat.getFont(this, com.example.prodhackathonspb.R.font.montserrat_regular) ?: Typeface.DEFAULT
+
+        // Устанавливаем кастомный hint на все поля
         binding.editTextNumber.apply {
             setText("")
-            hint = "Почта"
+            val hint = SpannableString("Почта").apply {
+                setSpan(CustomTypefaceSpan(montserrat), 0, length, SpannableString.SPAN_INCLUSIVE_EXCLUSIVE)
+            }
+            setHint(hint)
             inputType = android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         }
 
         binding.editTextUserName.apply {
             setText("")
-            hint = "Пароль"
+            val hint = SpannableString("Пароль").apply {
+                setSpan(CustomTypefaceSpan(montserrat), 0, length, SpannableString.SPAN_INCLUSIVE_EXCLUSIVE)
+            }
+            setHint(hint)
             inputType = android.text.InputType.TYPE_CLASS_TEXT or
                     android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
         binding.editTextPassword.apply {
             setText("")
-            hint = "Повторите пароль"
+            val hint = SpannableString("Повторите пароль").apply {
+                setSpan(CustomTypefaceSpan(montserrat), 0, length, SpannableString.SPAN_INCLUSIVE_EXCLUSIVE)
+            }
+            setHint(hint)
             inputType = android.text.InputType.TYPE_CLASS_TEXT or
                     android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
-        // РЕГИСТРАЦИЯ - кнопка продолжить
+        setupViews()
+        observeViewModel()
+    }
+
+    private fun setupViews() {
+        // hint/setText больше не нужны — уже установлены выше
         binding.buttonEntranceWithMail.setOnClickListener {
             val email = binding.editTextNumber.text.toString().trim()
             val password = binding.editTextUserName.text.toString().trim()
@@ -75,12 +102,14 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
-        // Переход на экран входа
         binding.textView3.setOnClickListener {
             navigateToLogin()
         }
 
-        // Очистка при вводе
+        binding.textIfNotHaveAccount.setOnClickListener {
+            navigateToLogin()
+        }
+
         binding.editTextNumber.doAfterTextChanged { }
         binding.editTextUserName.doAfterTextChanged { }
         binding.editTextPassword.doAfterTextChanged { }
@@ -103,14 +132,12 @@ class SignUpActivity : AppCompatActivity() {
                 // Загрузка
                 launch {
                     viewModel.isLoading.collect { isLoading ->
-                        // Блокируем/разблокируем UI
                         binding.buttonEntranceWithMail.isEnabled = !isLoading
                         binding.editTextNumber.isEnabled = !isLoading
                         binding.editTextUserName.isEnabled = !isLoading
                         binding.editTextPassword.isEnabled = !isLoading
                         binding.textView3.isEnabled = !isLoading
 
-                        // Меняем текст кнопки
                         binding.textEntranceWithMail.text = if (isLoading) {
                             "Загрузка..."
                         } else {
@@ -127,7 +154,6 @@ class SignUpActivity : AppCompatActivity() {
                             "Регистрация выполнена успешно!",
                             Toast.LENGTH_SHORT
                         ).show()
-
                         navigateToMain()
                     }
                 }

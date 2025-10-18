@@ -98,6 +98,10 @@ class LoginActivity : AppCompatActivity() {
             navigateToSignUp()
         }
 
+        binding.textIfNotHaveAccount.setOnClickListener {
+            navigateToSignUp()
+        }
+
         binding.editTextMail.doAfterTextChanged {
             // Можно добавить логику
         }
