@@ -116,7 +116,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/montserrat_light"
-                                android:text="Список всех групп"
+                                android:text="Список моих групп"
                                 android:textSize="13sp"
                                 android:textColor="@color/white" />
                         </LinearLayout>
