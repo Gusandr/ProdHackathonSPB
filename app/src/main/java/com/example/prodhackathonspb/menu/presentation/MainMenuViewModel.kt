@@ -36,7 +36,7 @@ class MainMenuViewModel @Inject constructor(
                     _uiState.value = MainMenuUiState(error = "Требуется авторизация")
                     return@launch
                 }
-                 val user = repository.getUserService(token)
+                val user = repository.getUserService(token)
                 val email = user.email ?: ""
                 val username = email.substringBefore("@")
                 _uiState.value = MainMenuUiState(userName = username)

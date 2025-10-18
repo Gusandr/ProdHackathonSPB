@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.prodhackathonspb.databinding.ActivityMainBinding
 import com.example.prodhackathonspb.login.presentation.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -16,14 +17,10 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         setupViews()
         observeViewModel()
@@ -33,35 +30,11 @@ class MainActivity : AppCompatActivity() {
         // Загружаем данные пользователя
         viewModel.loadUserData()
 
-        // Кнопка выхода
-        binding.buttonLogout.setOnClickListener {
-            viewModel.logout()
-        }
     }
 
     private fun observeViewModel() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // Наблюдаем за данными пользователя
-                launch {
-                    viewModel.userData.collect { user ->
-                        user?.let {
-                            binding.textUserEmail.text = it.email ?: "Неизвестно"
-                            // Отображаем другие данные пользователя
-                        }
-                    }
-                }
-
-                // Наблюдаем за состоянием загрузки
-                launch {
-                    viewModel.isLoading.collect { isLoading ->
-                        binding.progressBar.visibility = if (isLoading) {
-                            android.view.View.VISIBLE
-                        } else {
-                            android.view.View.GONE
-                        }
-                    }
-                }
 
                 // Наблюдаем за событием logout
                 launch {

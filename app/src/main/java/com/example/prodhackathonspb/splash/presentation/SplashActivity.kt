@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.prodhackathonspb.databinding.ActivityEntranceMainBinding
@@ -21,6 +23,15 @@ class SplashActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEntranceMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.linearLayout) { view, insets ->
+            val sysBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Только paddingTop!
+            view.setPadding(view.paddingLeft, sysBars.top, view.paddingRight, view.paddingBottom)
+            insets
+        }
+
+
 
         lifecycleScope.launch {
             repeatOnLifecycle(androidx.lifecycle.Lifecycle.State.STARTED) {

@@ -44,6 +44,8 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
+
+
         // Класс для кастомного TypefaceSpan — прямо тут
         class CustomTypefaceSpan(private val typeface: Typeface) : TypefaceSpan("") {
             override fun updateDrawState(ds: TextPaint) {
