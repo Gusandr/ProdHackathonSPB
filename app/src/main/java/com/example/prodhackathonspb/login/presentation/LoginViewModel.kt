@@ -40,17 +40,9 @@ class LoginViewModel @Inject constructor(
                     return@launch
                 }
 
-                // Делаем регистрацию
-                val response = repository.signUp(email, password)
-
-                // Сохраняем токен
-                tokenManager.saveToken(response)
-
-                // Уведомляем UI об успехе
-                _loginSuccess.emit(Unit)
-
             } catch (e: Exception) {
                 _showNetworkError.emit("Ошибка регистрации: ${e.message}")
+                e.printStackTrace()
             } finally {
                 _isLoading.value = false
             }

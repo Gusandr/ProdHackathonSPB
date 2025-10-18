@@ -2,8 +2,9 @@ package com.example.prodhackathonspb.repository
 
 import com.example.prodhackathonspb.network.GetUserService
 import com.example.prodhackathonspb.network.ServerStatusService
+import com.example.prodhackathonspb.network.SignInService
 import com.example.prodhackathonspb.network.SignUpService
-import com.example.prodhackathonspb.network.models.SignUpRequest
+import com.example.prodhackathonspb.network.models.SignRequest
 import com.example.prodhackathonspb.network.models.User
 import javax.inject.Inject
 
@@ -11,6 +12,7 @@ class Repository @Inject constructor(
     private val service: ServerStatusService,
     private val getUserService: GetUserService,
     private val signUpService: SignUpService,
+    private val signInService: SignInService,
 ) {
     suspend fun checkStatus(): Boolean {
         return runCatching {
@@ -22,7 +24,7 @@ class Repository @Inject constructor(
         })
     }
 
-    suspend fun getUserService(token: String = "gAAAAABo82H6l3WlrpBtuYb315V4o5QwPTIogsQGRWsIAEk68WCsUfV93ABA3rFomOQG67nYvAH2_ThfA67n6r6P_bIc3PnoaA2j1hugotPpg_DzF8_gue-_FIGqFtoAYqaEEy2v-pBs"): User {
+    suspend fun getUserService(token: String): User {
         return runCatching {
             getUserService.getUser("Bearer $token")
         }.fold(
@@ -33,9 +35,19 @@ class Repository @Inject constructor(
         )
     }
 
-    suspend fun signUp(email: String, password: String): String {
+    suspend fun signUp(email: String, password: String): String? {
         return runCatching {
-            signUpService.signUp(SignUpRequest(email, password))
+            signUpService.signUp(SignRequest(email, password))
+        }.fold(onSuccess = {
+            it
+        }, onFailure = { exception ->
+            throw Exception("Failed to signUp user: ${exception.message}", exception)
+        })
+    }
+
+    suspend fun signIn(email: String, password: String): String? {
+        return runCatching {
+            signInService.signIn(SignRequest(email, password))
         }.fold(onSuccess = {
             it
         }, onFailure = { exception ->
