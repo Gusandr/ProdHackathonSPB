@@ -107,7 +107,7 @@
             android:fontFamily="@font/montserrat_light"
             android:gravity="start"
             android:text="Зарегистрироваться"
-            android:textColor="#FFFFFF"
+            android:textColor="#B7B1FC"
             android:textSize="13sp" />
     </LinearLayout>
 
