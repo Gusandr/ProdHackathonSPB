@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2B2B2B">
+    android:background="#0E0E0E">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -77,7 +77,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="130dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,8 +92,8 @@
             android:fontFamily="@font/montserrat_light"
             android:gravity="end"
             android:text="Еще нет аккаунта?"
-            android:textColor="#AFAFAF"
-            android:textSize="15sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textView3"
@@ -105,8 +105,8 @@
             android:fontFamily="@font/montserrat_light"
             android:gravity="start"
             android:text="Зарегистрироваться"
-            android:textColor="#D8D8D8"
-            android:textSize="15sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
     </LinearLayout>
 
     <FrameLayout
@@ -115,7 +115,7 @@
         android:layout_height="60dp"
         android:layout_marginBottom="20dp"
         android:layout_marginHorizontal="25dp"
-        android:background="@drawable/fragment_entrance_with_mail"
+        android:background="@drawable/fragment_button_default"
         app:layout_constraintBottom_toTopOf="@+id/linearForGoingToSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -125,42 +125,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/montserrat_regular"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="Войти по почте"
-            android:textColor="#FFFFFF" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/buttonEntranceWithPhone"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginHorizontal="25dp"
-        android:background="@drawable/fragment_entrance_with_phone"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEntranceWithMail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/textEntranceWithPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="Войти по номеру телефона"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
     </FrameLayout>
 
     <TextView
         android:id="@+id/textForEntrance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="25dp"
         android:text="Ваш доступ к\nвычислительной\nмощности\nуниверситета"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEntranceWithPhone"
-        app:layout_constraintStart_toStartOf="@+id/buttonEntranceWithPhone" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonEntranceWithMail"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

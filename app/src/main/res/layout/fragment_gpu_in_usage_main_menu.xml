@@ -8,7 +8,7 @@
     <FrameLayout
         android:id="@+id/frameLayoutCard"
         android:layout_width="match_parent"
-        android:layout_height="w"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/fragment_background_default_pole"
