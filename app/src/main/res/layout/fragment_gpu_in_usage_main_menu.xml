@@ -45,7 +45,7 @@
                     android:layout_height="33dp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0"
-                    app:srcCompat="@drawable/icon_gpu" />
+                    android:src="@drawable/icon_gpu" />
 
                 <TextView
                     android:id="@+id/textView2"

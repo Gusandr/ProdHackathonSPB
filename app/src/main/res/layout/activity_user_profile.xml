@@ -15,7 +15,7 @@
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_back_button" />
+        android:src="@drawable/icon_back_button" />
 
     <TextView
         android:id="@+id/textProfile"
@@ -59,7 +59,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginTop="30dp"
-                        app:srcCompat="@drawable/icon_user_profile_default" />
+                        android:src="@drawable/icon_user_profile_default" />
                     <TextView
                         android:id="@+id/textUserMail"
                         android:layout_width="match_parent"
@@ -237,7 +237,7 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_weight="0"
-                            app:srcCompat="@drawable/icon_user_group" />
+                            android:src="@drawable/icon_user_group" />
                         <LinearLayout
                             android:id="@+id/quickAccessGroupsTextContainer"
                             android:layout_width="0dp"

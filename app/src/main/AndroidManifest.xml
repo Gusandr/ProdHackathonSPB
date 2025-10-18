@@ -10,14 +10,19 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/icon_mgpu_app"
+        android:icon="@mipmap/icon_mgpu_app_presentation"
         android:label="mGPU"
-        android:roundIcon="@mipmap/icon_mgpu_app"
+        android:roundIcon="@mipmap/icon_mgpu_app_presentation"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProdHackathonSPB">
 
         <activity
             android:name=".menu.presentation.MainMenuActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".main.presentation.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
 
@@ -33,11 +38,6 @@
 
         <activity
             android:name=".profile.presentation.UserProfileActivity"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".main.presentation.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
 
