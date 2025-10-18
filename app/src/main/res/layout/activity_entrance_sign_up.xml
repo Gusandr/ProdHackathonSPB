@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#2B2B2B">
+    android:background="#0E0E0E">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -91,8 +91,8 @@
             android:fontFamily="@font/montserrat_light"
             android:gravity="end"
             android:text="Уже есть аккаунт?"
-            android:textColor="#AFAFAF"
-            android:textSize="15sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textView3"
@@ -104,8 +104,8 @@
             android:fontFamily="@font/montserrat_light"
             android:gravity="start"
             android:text="Войти"
-            android:textColor="#D8D8D8"
-            android:textSize="15sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
     </LinearLayout>
 
     <FrameLayout
@@ -114,7 +114,7 @@
         android:layout_height="60dp"
         android:layout_marginBottom="20dp"
         android:layout_marginHorizontal="25dp"
-        android:background="@drawable/fragment_entrance_with_mail"
+        android:background="@drawable/fragment_button_default"
         app:layout_constraintBottom_toTopOf="@+id/linearForGoingToSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -124,36 +124,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="Продолжить"
-            android:textColor="#FFFFFF" />
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Войти"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
     </FrameLayout>
 
-    <!-- Поле для ввода номера -->
-    <ImageView
-        android:id="@+id/imageLogotypeMeme"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginBottom="12dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/poleForPassword"
-        app:layout_constraintStart_toStartOf="@+id/poleForPassword"
-        app:srcCompat="@drawable/icon_logotype_meme" />
 
     <FrameLayout
         android:id="@+id/poleForNumber"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="25dp"
-        android:background="@drawable/fragment_entrance_with_mail"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/fragment_search_pole_default"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/imageLogotypeMeme"
+        app:layout_constraintBottom_toTopOf="@+id/poleForPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageLogotypeMeme"
-        app:layout_constraintTop_toTopOf="@+id/imageLogotypeMeme">
+        app:layout_constraintStart_toStartOf="@+id/poleForPassword">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -184,8 +172,8 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/fragment_entrance_with_mail"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/fragment_search_pole_default"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/poleForPasswordAgain"
         app:layout_constraintEnd_toEndOf="parent"
@@ -220,8 +208,8 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/fragment_entrance_with_mail"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/fragment_search_pole_default"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/buttonEntranceWithMail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -240,7 +228,7 @@
                 android:ems="10"
                 android:fontFamily="@font/montserrat_regular"
                 android:inputType="text"
-                android:text="Повторите пароль"
+                android:text="Подтверждение пароля"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -254,7 +242,7 @@
         android:id="@+id/textForSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginHorizontal="25dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/montserrat_semibold"
         android:text="Зарегистрироваться"

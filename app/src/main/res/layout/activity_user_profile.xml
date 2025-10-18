@@ -78,10 +78,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:fontFamily="@font/montserrat_semibold"
                     android:text="Выйти"
                     android:textColor="#FFFFFF"
-                    android:textSize="14sp" />
+                    android:textSize="13sp" />
             </FrameLayout>
 
             <FrameLayout
@@ -101,10 +101,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:fontFamily="@font/montserrat_semibold"
                     android:text="Удалить аккаунт"
-                    android:textSize="14sp"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp" />
             </FrameLayout>
         </LinearLayout>
     </FrameLayout>
