@@ -35,7 +35,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_weight="0"
-            app:srcCompat="@drawable/icon_logotype_alex_meme" />
+            app:srcCompat="@drawable/icon_user_profile_default" />
     </LinearLayout>
 
     <!-- Основная скроллируемая область с контентом -->
