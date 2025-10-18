@@ -43,11 +43,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adminHeaderPanel">
+        app:layout_constraintTop_toBottomOf="@id/adminHeaderPanel"
+        android:layout_marginBottom="25dp">
 
         <LinearLayout
             android:id="@+id/adminContentContainer"
@@ -70,18 +70,27 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
-            <!-- Горизонтальный список карточек на RecyclerView -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/groupCardsRecycler"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:overScrollMode="never"
-                android:clipToPadding="false"
-                android:paddingHorizontal="20dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/fragment_group_card_main_menu"
-                tools:itemCount="4" />
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="20dp">
+
+                    <include layout="@layout/fragment_group_card_main_menu" />
+                    <include layout="@layout/fragment_group_card_main_menu" />
+                    <include layout="@layout/fragment_group_card_main_menu" />
+                    <include layout="@layout/fragment_group_card_main_menu" />
+                    <include layout="@layout/fragment_group_card_main_menu" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
             <!-- Карточка быстрых ссылок -->
             <FrameLayout
@@ -150,11 +159,15 @@
                             android:layout_weight="0"
                             app:srcCompat="@drawable/icon_arrow_to_the_right" />
                     </LinearLayout>
+
+                    <!-- Кнопка: Все пользователи -->
+
+                    <!-- Кнопка: Все отчеты -->
+
+                    <!-- Кнопка: Система -->
                 </LinearLayout>
             </FrameLayout>
 
-            <!-- Предупреждение -->
-            <include layout="@layout/fragment_warning_main_menu_admin"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
