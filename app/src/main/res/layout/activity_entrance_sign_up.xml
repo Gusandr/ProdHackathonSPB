@@ -83,29 +83,18 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textIfNotHaveAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:fontFamily="@font/montserrat_light"
-            android:gravity="end"
-            android:text="Уже есть аккаунт?"
-            android:textColor="#FFFFFF"
-            android:textSize="13sp" />
-
-        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/montserrat_light"
-            android:gravity="start"
-            android:text="Войти"
+            android:gravity="center"
+            android:text="Уже есть аккаунт? Войти"
             android:textColor="#FFFFFF"
             android:textSize="13sp" />
+
+
     </LinearLayout>
 
     <FrameLayout
