@@ -30,13 +30,10 @@ class LoginViewModel @Inject constructor(
     private val _loginSuccess = MutableSharedFlow<Unit>()
     val loginSuccess: SharedFlow<Unit> = _loginSuccess.asSharedFlow()
 
-    // ВХОД - используется в LoginActivity
     fun signIn(email: String, password: String) {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-
-                // Проверяем сеть
                 if (!repository.checkStatus()) {
                     _showNetworkError.emit("Проверьте подключение к интернету")
                     return@launch
@@ -59,27 +56,20 @@ class LoginViewModel @Inject constructor(
                         _showNetworkError.emit("Ошибка сети: ${result.throwable.message}")
                     }
                 }
-            } catch (e: Exception) {
-                _showNetworkError.emit("Неизвестная ошибка: ${e.message}")
-                e.printStackTrace()
             } finally {
                 _isLoading.value = false
             }
         }
     }
 
-    // РЕГИСТРАЦИЯ - будет использоваться в SignUpActivity
     fun signUp(email: String, password: String) {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-
-                // Проверяем сеть
                 if (!repository.checkStatus()) {
                     _showNetworkError.emit("Проверьте подключение к интернету")
                     return@launch
                 }
-
                 when (val result = repository.signUp(email, password)) {
                     is ApiResult.Success -> {
                         tokenHolder.saveToken(result.data)
@@ -97,9 +87,6 @@ class LoginViewModel @Inject constructor(
                         _showNetworkError.emit("Ошибка сети: ${result.throwable.message}")
                     }
                 }
-            } catch (e: Exception) {
-                _showNetworkError.emit("Неизвестная ошибка: ${e.message}")
-                e.printStackTrace()
             } finally {
                 _isLoading.value = false
             }

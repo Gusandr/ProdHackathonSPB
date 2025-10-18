@@ -17,28 +17,30 @@
         android:theme="@style/Theme.ProdHackathonSPB">
 
         <activity
+            android:name=".menu.presentation.MainMenuActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".login.presentation.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".signup.presentation.SignUpActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".splash.presentation.SplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".login.presentation.LoginActivity"
-            android:exported="false" />
-
-        <!-- Экран регистрации -->
-        <activity
-            android:name=".signup.presentation.SignUpActivity"
-            android:exported="false" />
-
-        <!-- Главный экран -->
-        <activity
-            android:name=".main.presentation.MainActivity"
-            android:exported="false" />
 
     </application>
 
