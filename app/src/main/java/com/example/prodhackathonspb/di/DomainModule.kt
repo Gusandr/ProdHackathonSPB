@@ -6,10 +6,13 @@ import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
 import com.example.prodhackathonspb.network.DeclineGroupInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
+import com.example.prodhackathonspb.network.GetInvitesShardService
 import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
 import com.example.prodhackathonspb.network.SignInService
 import com.example.prodhackathonspb.network.ServerStatusService
+import com.example.prodhackathonspb.network.ShardInviteAcceptService
+import com.example.prodhackathonspb.network.ShardInviteDeclineService
 import com.example.prodhackathonspb.network.SignUpService
 import com.example.prodhackathonspb.repository.Repository
 import dagger.Module
@@ -37,6 +40,9 @@ object DomainModule {
         getUserGroupService: GetUserGroupService,
         addGroupService: AddGroupService,
         declineGroupInviteService: DeclineGroupInviteService,
+        shardInviteAcceptService: ShardInviteAcceptService,
+        shardInviteDeclineService: ShardInviteDeclineService,
+        getInvitesShardService: GetInvitesShardService,
     ): Repository {
         return Repository(
             tokenHolder,
@@ -49,7 +55,10 @@ object DomainModule {
             getInvitesService,
             getUserGroupService,
             addGroupService,
-            declineGroupInviteService
+            declineGroupInviteService,
+            shardInviteAcceptService,
+            shardInviteDeclineService,
+            getInvitesShardService
             )
     }
 }

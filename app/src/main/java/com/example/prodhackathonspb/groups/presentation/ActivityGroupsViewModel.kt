@@ -35,4 +35,15 @@ class ActivityGroupsViewModel @Inject constructor(
             }
         }
     }
+
+    fun addGroup() {
+        try {
+            viewModelScope.launch {
+                repository.addGroup()
+            }
+
+        } catch (e: Exception) {
+
+        }
+    }
 }

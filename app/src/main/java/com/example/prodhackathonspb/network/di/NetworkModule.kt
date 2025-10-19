@@ -5,9 +5,12 @@ import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
 import com.example.prodhackathonspb.network.DeclineGroupInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
+import com.example.prodhackathonspb.network.GetInvitesShardService
 import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
 import com.example.prodhackathonspb.network.ServerStatusService
+import com.example.prodhackathonspb.network.ShardInviteAcceptService
+import com.example.prodhackathonspb.network.ShardInviteDeclineService
 import com.example.prodhackathonspb.network.SignInService
 import com.example.prodhackathonspb.network.SignUpService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -132,5 +135,23 @@ object NetworkModule {
     @Singleton
     fun provideDeclineGroupInviteService(retrofit: Retrofit): DeclineGroupInviteService {
         return retrofit.create(DeclineGroupInviteService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideA(retrofit: Retrofit): GetInvitesShardService {
+        return retrofit.create(GetInvitesShardService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideB(retrofit: Retrofit): ShardInviteAcceptService {
+        return retrofit.create(ShardInviteAcceptService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideC(retrofit: Retrofit): ShardInviteDeclineService {
+        return retrofit.create(ShardInviteDeclineService::class.java)
     }
 }

@@ -6,9 +6,12 @@ import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
 import com.example.prodhackathonspb.network.DeclineGroupInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
+import com.example.prodhackathonspb.network.GetInvitesShardService
 import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
 import com.example.prodhackathonspb.network.ServerStatusService
+import com.example.prodhackathonspb.network.ShardInviteAcceptService
+import com.example.prodhackathonspb.network.ShardInviteDeclineService
 import com.example.prodhackathonspb.network.SignInService
 import com.example.prodhackathonspb.network.SignUpService
 import com.example.prodhackathonspb.network.models.AcceptInviteBody
@@ -34,6 +37,9 @@ class Repository @Inject constructor(
     private val getUserGroups: GetUserGroupService,
     private val addGroupService: AddGroupService,
     private val declineGroupInviteService: DeclineGroupInviteService,
+    private val shardInviteAcceptService: ShardInviteAcceptService,
+    private val shardInviteDeclineService: ShardInviteDeclineService,
+    private val getInvitesShardService: GetInvitesShardService,
 ) {
     suspend fun checkStatus(): Boolean {
         return runCatching {
