@@ -41,7 +41,7 @@ class ActivityGroups : AppCompatActivity() {
             (sheetView.parent as? FrameLayout)?.background = null
 
             // Любая инициализация/item listeners внутри sheetView:
-            sheetView.findViewById<TextView>(R.id.textGroups)?.text = "Настройки GPU"
+            sheetView.findViewById<TextView>(R.id.textGroups)?.text = "Настройки группы"
             sheetView.findViewById<android.widget.ImageView>(R.id.imageView2)?.setOnClickListener {
                 bottomSheet.dismiss()
             }
