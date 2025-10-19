@@ -1,10 +1,16 @@
 package com.example.prodhackathonspb.repository
 
+import com.example.prodhackathonspb.network.AcceptInviteService
+import com.example.prodhackathonspb.network.CreateInviteService
+import com.example.prodhackathonspb.network.GetInvitesService
 import com.example.prodhackathonspb.network.GetUserService
 import com.example.prodhackathonspb.network.ServerStatusService
 import com.example.prodhackathonspb.network.SignInService
 import com.example.prodhackathonspb.network.SignUpService
+import com.example.prodhackathonspb.network.models.AcceptInviteBody
 import com.example.prodhackathonspb.network.models.ApiResult
+import com.example.prodhackathonspb.network.models.CreateInviteBody
+import com.example.prodhackathonspb.network.models.GroupInvite
 import com.example.prodhackathonspb.network.models.SignRequest
 import com.example.prodhackathonspb.network.models.User
 import com.example.prodhackathonspb.network.models.ValidationError
@@ -16,6 +22,9 @@ class Repository @Inject constructor(
     private val getUserService: GetUserService,
     private val signUpService: SignUpService,
     private val signInService: SignInService,
+    private val acceptInviteService: AcceptInviteService,
+    private val createInviteService: CreateInviteService,
+    private val getInvitesService: GetInvitesService,
 ) {
     suspend fun checkStatus(): Boolean {
         return runCatching {
@@ -108,6 +117,38 @@ class Repository @Inject constructor(
             }
         } catch (e: Exception) {
             null
+        }
+    }
+
+    // Получить все инвайты текущего пользователя
+    suspend fun getMyInvites(): List<GroupInvite> {
+        return try {
+            getInvitesService.getInvites().invites
+        } catch (e: Exception) {
+            // Можно вернуть пустой список либо пробросить ошибку выше
+            emptyList()
+        }
+    }
+
+    // Принять приглашение
+    suspend fun acceptInvite(inviteId: String): Boolean {
+        return try {
+            val res = acceptInviteService.acceptInvite(AcceptInviteBody(inviteId))
+            res.active
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    // Создать приглашение
+    suspend fun createInvite(groupId: String, inviteeId: String): Boolean {
+        return try {
+            val res = createInviteService.createInvite(
+                CreateInviteBody(groupId = groupId, inviteeId = inviteeId)
+            )
+            res.active
+        } catch (e: Exception) {
+            false
         }
     }
 }

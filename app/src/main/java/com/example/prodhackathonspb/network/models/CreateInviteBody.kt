@@ -4,10 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GroupInvite(
-    val id: String,
+data class CreateInviteBody(
     @SerialName("group_id") val groupId: String,
-    @SerialName("inviter_id") val inviterId: String,
-    @SerialName("invitee_id") val inviteeId: User,
-    val active: Boolean
+    @SerialName("invitee_id") val inviteeId: String
 )

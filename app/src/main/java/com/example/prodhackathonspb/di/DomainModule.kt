@@ -1,5 +1,8 @@
 package com.example.prodhackathonspb.di
 
+import com.example.prodhackathonspb.network.AcceptInviteService
+import com.example.prodhackathonspb.network.CreateInviteService
+import com.example.prodhackathonspb.network.GetInvitesService
 import com.example.prodhackathonspb.network.GetUserService
 import com.example.prodhackathonspb.network.SignInService
 import com.example.prodhackathonspb.network.ServerStatusService
@@ -23,7 +26,18 @@ object DomainModule {
         serviceGetUser: GetUserService,
         serviceSignUpService: SignUpService,
         serviceSignInService: SignInService,
+        acceptInviteService: AcceptInviteService,
+        createInviteService: CreateInviteService,
+        getInvitesService: GetInvitesService,
     ): Repository {
-        return Repository(service, serviceGetUser, serviceSignUpService, serviceSignInService)
+        return Repository(
+            service,
+            serviceGetUser,
+            serviceSignUpService,
+            serviceSignInService,
+            acceptInviteService,
+            createInviteService,
+            getInvitesService,
+            )
     }
 }

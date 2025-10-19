@@ -1,5 +1,8 @@
 package com.example.prodhackathonspb.di
 
+import com.example.prodhackathonspb.network.AcceptInviteService
+import com.example.prodhackathonspb.network.CreateInviteService
+import com.example.prodhackathonspb.network.GetInvitesService
 import com.example.prodhackathonspb.network.GetUserService
 import com.example.prodhackathonspb.network.ServerStatusService
 import com.example.prodhackathonspb.network.SignInService
@@ -90,5 +93,23 @@ object NetworkModule {
     @Singleton
     fun provideSignInService(retrofit: Retrofit): SignInService {
         return retrofit.create(SignInService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAcceptInviteService(retrofit: Retrofit): AcceptInviteService {
+        return retrofit.create(AcceptInviteService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCreateInviteService(retrofit: Retrofit): CreateInviteService {
+        return retrofit.create(CreateInviteService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetInvitesService(retrofit: Retrofit): GetInvitesService {
+        return retrofit.create(GetInvitesService::class.java)
     }
 }

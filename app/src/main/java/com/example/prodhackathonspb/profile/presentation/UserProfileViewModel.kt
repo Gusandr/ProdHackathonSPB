@@ -3,6 +3,7 @@ package com.example.prodhackathonspb.profile.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prodhackathonspb.login.data.TokenHolder
+import com.example.prodhackathonspb.network.models.GroupInvite
 import com.example.prodhackathonspb.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -11,10 +12,7 @@ import javax.inject.Inject
 
 data class UserProfileUiState(
     val email: String? = null,
-    val avatarUrl: String? = null, // если нужен внешний аватар
-    val hasInvite: Boolean = false,
-    val inviteFrom: String? = null,
-    val inviteGroup: String? = null
+    val invites: List<GroupInvite> = emptyList()
 )
 
 @HiltViewModel
@@ -25,16 +23,12 @@ class UserProfileViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(UserProfileUiState())
     val uiState: StateFlow<UserProfileUiState> = _uiState.asStateFlow()
-
     private val _logoutFlow = MutableSharedFlow<Unit>()
     val logoutFlow = _logoutFlow.asSharedFlow()
-
     private val _errorFlow = MutableSharedFlow<String>()
     val errorFlow = _errorFlow.asSharedFlow()
 
-    init {
-        loadUser()
-    }
+    init { loadUser() }
 
     fun loadUser() {
         viewModelScope.launch {
@@ -45,39 +39,39 @@ class UserProfileViewModel @Inject constructor(
                     return@launch
                 }
                 val user = repository.getUserService(token)
-                // имена полей корректируй по своей модели User!
+                val invites = repository.getMyInvites()
                 _uiState.value = UserProfileUiState(
                     email = user.email,
-                    // avatarUrl = user.avatarUrl,
-                    // тестово Демка приглашения
-                    hasInvite = true, // сделай условие по своему бэку если реально есть приглашение
-                    inviteFrom = "Вася Пупкин",
-                    inviteGroup = "Группа 1"
+                    invites = invites
                 )
             } catch (e: Exception) {
                 _errorFlow.emit("Ошибка загрузки профиля: ${e.localizedMessage}")
             }
         }
     }
-
     fun logout() {
         viewModelScope.launch {
             tokenHolder.clearToken()
             _logoutFlow.emit(Unit)
         }
     }
-
-    fun onInviteAccepted() {
+    fun acceptInvite(inviteId: String) {
         viewModelScope.launch {
-            // Тут запрос к бэку принять приглашение (по ID) и обновление uiState
-            _errorFlow.emit("Группа принята (demo). Имплементируй реальный запрос.")
+            val ok = repository.acceptInvite(inviteId)
+            if (ok) {
+                _uiState.value = _uiState.value.copy(
+                    invites = _uiState.value.invites.filterNot { it.id == inviteId }
+                )
+            } else {
+                _errorFlow.emit("Ошибка принятия приглашения")
+            }
         }
     }
-
-    fun onInviteDeclined() {
+    fun declineInvite(inviteId: String) {
         viewModelScope.launch {
-            // Тут запрос к бэку отклонить приглашение (по ID) и обновление uiState
-            _errorFlow.emit("Приглашение отклонено (demo). Имплементируй реальный запрос.")
+            _uiState.value = _uiState.value.copy(
+                invites = _uiState.value.invites.filterNot { it.id == inviteId }
+            )
         }
     }
 }

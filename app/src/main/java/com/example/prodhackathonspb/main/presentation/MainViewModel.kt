@@ -49,6 +49,7 @@ class MainViewModel @Inject constructor(
                 val user = repository.getUserService(token)
                 _userData.value = user
 
+                println(repository.getUserService(token).id)
             } catch (e: Exception) {
                 _errorEvent.emit("Ошибка загрузки данных: ${e.message}")
             } finally {
