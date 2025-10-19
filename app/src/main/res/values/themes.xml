@@ -5,4 +5,13 @@
 
     <!-- На старых версиях мапим основной стиль на Base -->
     <style name="Theme.ProdHackathonSPB" parent="Theme.ProdHackathonSPB.Base" />
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/MyBottomSheetStyle</item>
+    </style>
+
+    <style name="MyBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

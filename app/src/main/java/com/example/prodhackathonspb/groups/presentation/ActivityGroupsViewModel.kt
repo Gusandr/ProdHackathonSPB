@@ -37,13 +37,13 @@ class ActivityGroupsViewModel @Inject constructor(
     }
 
     fun addGroup() {
-        try {
-            viewModelScope.launch {
+        viewModelScope.launch {
+            try {
                 repository.addGroup()
+                loadGroups() // Автообновление после добавления
+            } catch (e: Exception) {
+                _errorFlow.emit("Ошибка добавления группы: ${e.localizedMessage}")
             }
-
-        } catch (e: Exception) {
-
         }
     }
 }
