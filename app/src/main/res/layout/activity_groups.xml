@@ -91,4 +91,14 @@
                 android:textColor="@color/white" />
         </LinearLayout>
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageButtonSettings"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/icon_settings"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonBack" />
 </androidx.constraintlayout.widget.ConstraintLayout>
