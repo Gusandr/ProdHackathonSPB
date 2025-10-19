@@ -221,6 +221,17 @@
                 </LinearLayout>
             </ScrollView>
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:rotation="45"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_plus" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
