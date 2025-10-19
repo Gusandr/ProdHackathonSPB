@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="#0E0E0E">
 
     <ImageView
@@ -89,7 +90,7 @@
         </LinearLayout>
     </FrameLayout>
 
-    <!-- Кнопка/панель списка групп СЕРЕДИНА ЭКРАНА -->
+    <!-- Кнопка "Группы" -->
     <FrameLayout
         android:id="@+id/quickAccessMainFrame"
         android:layout_width="0dp"
@@ -100,8 +101,7 @@
         android:background="@drawable/fragment_background_default_pole"
         app:layout_constraintTop_toBottomOf="@id/frameLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/invitesRecycler">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:id="@+id/quickAccessLinksContainer"
@@ -164,12 +164,29 @@
         </LinearLayout>
     </FrameLayout>
 
-    <!-- RecyclerView (ПРИГЛАШЕНИЯ) всегда внизу, тянется свободным пространством -->
+    <!-- Заглушка, если приглашений нет -->
+    <TextView
+        android:id="@+id/invitesEmptyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Приглашений нет"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/quickAccessMainFrame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        tools:visibility="gone"/>
+
+    <!-- Список приглашений -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/invitesRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintTop_toBottomOf="@id/quickAccessMainFrame"
         app:layout_constraintBottom_toBottomOf="parent"

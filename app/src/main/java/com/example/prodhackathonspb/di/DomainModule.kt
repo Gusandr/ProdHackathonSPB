@@ -2,8 +2,10 @@ package com.example.prodhackathonspb.di
 
 import com.example.prodhackathonspb.login.data.TokenHolder
 import com.example.prodhackathonspb.network.AcceptInviteService
+import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
+import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
 import com.example.prodhackathonspb.network.SignInService
 import com.example.prodhackathonspb.network.ServerStatusService
@@ -31,6 +33,8 @@ object DomainModule {
         acceptInviteService: AcceptInviteService,
         createInviteService: CreateInviteService,
         getInvitesService: GetInvitesService,
+        getUserGroupService: GetUserGroupService,
+        addGroupService: AddGroupService,
     ): Repository {
         return Repository(
             tokenHolder,
@@ -41,6 +45,8 @@ object DomainModule {
             acceptInviteService,
             createInviteService,
             getInvitesService,
+            getUserGroupService,
+            addGroupService
             )
     }
 }

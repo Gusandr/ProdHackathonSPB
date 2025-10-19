@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prodhackathonspb.R
 import com.example.prodhackathonspb.databinding.ActivityUserProfileBinding
+import com.example.prodhackathonspb.groups.presentation.ActivityGroups
 import com.example.prodhackathonspb.login.presentation.LoginActivity
 import com.example.prodhackathonspb.profile.data.UserInviteAdapter
 import com.example.prodhackathonspb.splash.presentation.SplashActivity
@@ -48,6 +49,11 @@ class UserProfileActivity : AppCompatActivity() {
             alexMode = !alexMode
         }
 
+        binding.quickAccessGroupsButton.setOnClickListener {
+            val intent = Intent(this, ActivityGroups::class.java)
+            startActivity(intent)
+        }
+
         inviteAdapter = UserInviteAdapter(
             onAccept = { inviteId -> viewModel.acceptInvite(inviteId) },
             onDecline = { inviteId -> viewModel.declineInvite(inviteId) }
@@ -66,7 +72,14 @@ class UserProfileActivity : AppCompatActivity() {
                     viewModel.uiState.collect { state ->
                         binding.textUserMail.text = state.email ?: "—"
                         inviteAdapter.submitList(state.invites)
-                        binding.invitesRecycler.visibility = if (state.invites.isEmpty()) View.GONE else View.VISIBLE
+
+                        if (state.invites.isEmpty()) {
+                            binding.invitesRecycler.visibility = View.GONE
+                            binding.invitesEmptyText.visibility = View.VISIBLE
+                        } else {
+                            binding.invitesRecycler.visibility = View.VISIBLE
+                            binding.invitesEmptyText.visibility = View.GONE
+                        }
                     }
                 }
             }

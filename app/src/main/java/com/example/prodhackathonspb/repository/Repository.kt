@@ -2,8 +2,10 @@ package com.example.prodhackathonspb.repository
 
 import com.example.prodhackathonspb.login.data.TokenHolder
 import com.example.prodhackathonspb.network.AcceptInviteService
+import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
+import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
 import com.example.prodhackathonspb.network.ServerStatusService
 import com.example.prodhackathonspb.network.SignInService
@@ -11,6 +13,7 @@ import com.example.prodhackathonspb.network.SignUpService
 import com.example.prodhackathonspb.network.models.AcceptInviteBody
 import com.example.prodhackathonspb.network.models.ApiResult
 import com.example.prodhackathonspb.network.models.CreateInviteBody
+import com.example.prodhackathonspb.network.models.Group
 import com.example.prodhackathonspb.network.models.GroupInvite
 import com.example.prodhackathonspb.network.models.SignRequest
 import com.example.prodhackathonspb.network.models.User
@@ -27,6 +30,8 @@ class Repository @Inject constructor(
     private val acceptInviteService: AcceptInviteService,
     private val createInviteService: CreateInviteService,
     private val getInvitesService: GetInvitesService,
+    private val getUserGroups: GetUserGroupService,
+    private val addGroupService: AddGroupService,
 ) {
     suspend fun checkStatus(): Boolean {
         return runCatching {
@@ -153,5 +158,13 @@ class Repository @Inject constructor(
         } catch (e: Exception) {
             false
         }
+    }
+
+    suspend fun getMyGroups(): List<Group> {
+        return getUserGroups.getUserGroup("Bearer ${tokenHolder.getToken() ?: throw Exception("No token!")}")
+    }
+
+    suspend fun addGroup() {
+        addGroupService.addGroup("Bearer ${tokenHolder.getToken() ?: throw Exception("No token!")}")
     }
 }

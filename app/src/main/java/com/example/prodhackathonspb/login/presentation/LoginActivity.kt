@@ -133,7 +133,7 @@ class LoginActivity : AppCompatActivity() {
                         binding.buttonEntranceWithMail.isEnabled = !isLoading
                         binding.editTextMail.isEnabled = !isLoading
                         binding.editTextPassword.isEnabled = !isLoading
-                        binding.textView3.isEnabled = !isLoading
+                        binding.textView3.isEnabled = true
 
                         binding.textEntranceWithMail.text = if (isLoading) {
                             "Загрузка..."
