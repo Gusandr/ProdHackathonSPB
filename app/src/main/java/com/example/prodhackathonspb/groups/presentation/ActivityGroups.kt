@@ -1,6 +1,7 @@
 package com.example.prodhackathonspb.groups.presentation
 
 import android.os.Bundle
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -22,28 +23,38 @@ class ActivityGroups : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.imageButtonBack.setOnClickListener { finish() }
+
         binding.buttonEntranceWithMail.setOnClickListener {
-            Toast.makeText(this, "Добавить группу (реализуй переход)", Toast.LENGTH_SHORT).show()
+            viewModel.addGroup()
         }
 
+        // Открытие settings bottom sheet на пол экрана!
+        binding.imageButtonSettings.setOnClickListener {
+            val bottomSheet = BottomSheetDialog(this)
+            val sheetView = layoutInflater.inflate(R.layout.dialog_window_gpu_settings, null)
+            bottomSheet.setContentView(sheetView)
+            bottomSheet.show()
+
+            // Убрать скругленный фон (для true bottom-sheet look)
+            (sheetView.parent as? FrameLayout)?.background = null
+
+            // Любая инициализация/item listeners внутри sheetView:
+            sheetView.findViewById<TextView>(R.id.textGroups)?.text = "Настройки GPU"
+            sheetView.findViewById<android.widget.ImageView>(R.id.imageView2)?.setOnClickListener {
+                bottomSheet.dismiss()
+            }
+        }
+
+        // обработка шардов по клику на карточки в списке
         lifecycleScope.launchWhenStarted {
             viewModel.groups.collect { groups ->
-                // Очищаем все предыдущие группы из LinearLayout
                 binding.scrollViewForGroups.removeAllViews()
                 groups.forEachIndexed { i, group ->
                     val groupView = layoutInflater.inflate(R.layout.fragment_group, binding.scrollViewForGroups, false)
                     groupView.findViewById<TextView>(R.id.textView2).text = "Группа ${group.id}"
-                    // textView — надпись "Группа"
-                    groupView.findViewById<TextView>(R.id.textView).text = "Группа ${i+1}"
-                    // По желанию можешь подставлять изображение group.icon в imageView
-
-                    // При необходимости обработчик клика:
+                    groupView.findViewById<TextView>(R.id.textView).text = "Группа ${i + 1}"
                     groupView.setOnClickListener {
-                        val dialog = BottomSheetDialog(this@ActivityGroups) // или requireContext() во фрагменте
-                        val view = layoutInflater.inflate(R.layout.dialog_window_group, null)
-                        dialog.setContentView(view)
-                        dialog.show()
-                        Toast.makeText(this@ActivityGroups, "Клик по группе ${group.id}", Toast.LENGTH_SHORT).show()
+                        // ... Если здесь нужен другой sheet - аналогично
                     }
                     binding.scrollViewForGroups.addView(groupView)
                 }
@@ -56,4 +67,3 @@ class ActivityGroups : AppCompatActivity() {
         }
     }
 }
-
