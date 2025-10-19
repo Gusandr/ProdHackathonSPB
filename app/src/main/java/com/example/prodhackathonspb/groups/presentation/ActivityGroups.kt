@@ -1,7 +1,9 @@
 package com.example.prodhackathonspb.groups.presentation
 
+import android.media.Image
 import android.os.Bundle
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -54,8 +56,42 @@ class ActivityGroups : AppCompatActivity() {
                     groupView.findViewById<TextView>(R.id.textView2).text = "Группа ${group.id}"
                     groupView.findViewById<TextView>(R.id.textView).text = "Группа ${i + 1}"
                     groupView.setOnClickListener {
-                        // ... Если здесь нужен другой sheet - аналогично
+                        // Создаём и показываем кастомный bottom sheet dialog
+                        val bottomSheet = BottomSheetDialog(this@ActivityGroups)
+                        val sheetView = layoutInflater.inflate(R.layout.activity_shard, null)
+                        bottomSheet.setContentView(sheetView)
+
+                        // Кастомизация sheet, например, подставить имя группы:
+                        sheetView.findViewById<TextView>(R.id.textGroups)?.text = "Группа"
+
+                        // Если нужно — динамически подставить содержимое "шардов" или другие данные
+
+                        // Слушатели для кнопок внутри sheet (например, закрытие по иконке-крестику)
+                        sheetView.findViewById<android.widget.ImageView>(R.id.imageView2)?.setOnClickListener {
+                            bottomSheet.dismiss()
+                        }
+
+                        sheetView.findViewById<ImageView>(R.id.imageButtonSettings).setOnClickListener {
+                            val bottomSheet = BottomSheetDialog(this@ActivityGroups)
+                            val sheetView = layoutInflater.inflate(R.layout.fragment_adding_gpu, null)
+                            bottomSheet.setContentView(sheetView)
+                            bottomSheet.show()
+                        }
+
+                        // Пример: обработчик "Добавить"/"Убрать" GPU
+                        sheetView.findViewById<FrameLayout>(R.id.buttonDecline)?.setOnClickListener {
+                            //Toast.makeText(this, "Добавить GPU в группу ${group.id}", Toast.LENGTH_SHORT).show()
+                            // Здесь можно вызвать метод во ViewModel → repository.addGpuToGroup()
+                        }
+                        sheetView.findViewById<FrameLayout>(R.id.buttonAccept)?.setOnClickListener {
+                            //Toast.makeText(this, "Убрать GPU у группы ${group.id}", Toast.LENGTH_SHORT).show()
+                            // Здесь можно вызвать метод во ViewModel → repository.removeGpuFromGroup()
+                        }
+
+                        // Показать bottom sheet
+                        bottomSheet.show()
                     }
+
                     binding.scrollViewForGroups.addView(groupView)
                 }
             }
