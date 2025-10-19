@@ -57,7 +57,7 @@ class UserProfileViewModel @Inject constructor(
     }
     fun acceptInvite(inviteId: String) {
         viewModelScope.launch {
-            val ok = repository.acceptInvite(inviteId)
+            val ok = repository.acceptInviteGroup(inviteId)
             if (ok) {
                 _uiState.value = _uiState.value.copy(
                     invites = _uiState.value.invites.filterNot { it.id == inviteId }
@@ -69,6 +69,7 @@ class UserProfileViewModel @Inject constructor(
     }
     fun declineInvite(inviteId: String) {
         viewModelScope.launch {
+            declineInvite(inviteId)
             _uiState.value = _uiState.value.copy(
                 invites = _uiState.value.invites.filterNot { it.id == inviteId }
             )

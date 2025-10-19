@@ -169,7 +169,7 @@
         android:id="@+id/invitesEmptyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Приглашений нет"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="16sp"
         android:fontFamily="@font/montserrat_medium"

@@ -4,6 +4,7 @@ import com.example.prodhackathonspb.login.data.TokenHolder
 import com.example.prodhackathonspb.network.AcceptInviteService
 import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
+import com.example.prodhackathonspb.network.DeclineGroupInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
 import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
@@ -32,6 +33,7 @@ class Repository @Inject constructor(
     private val getInvitesService: GetInvitesService,
     private val getUserGroups: GetUserGroupService,
     private val addGroupService: AddGroupService,
+    private val declineGroupInviteService: DeclineGroupInviteService,
 ) {
     suspend fun checkStatus(): Boolean {
         return runCatching {
@@ -139,9 +141,18 @@ class Repository @Inject constructor(
     }
 
     // Принять приглашение
-    suspend fun acceptInvite(inviteId: String): Boolean {
+    suspend fun acceptInviteGroup(inviteId: String): Boolean {
         return try {
             acceptInviteService.acceptInvite("Bearer ${tokenHolder.getToken()?:throw Exception("token is null!")}", AcceptInviteBody(inviteId))
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    suspend fun declineInviteGroup(inviteId: String): Boolean {
+        return try {
+            declineGroupInviteService.declineGroup("Bearer ${tokenHolder.getToken()?:throw Exception("token is null!")}", AcceptInviteBody(inviteId))
             true
         } catch (e: Exception) {
             false

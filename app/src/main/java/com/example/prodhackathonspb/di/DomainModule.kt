@@ -4,6 +4,7 @@ import com.example.prodhackathonspb.login.data.TokenHolder
 import com.example.prodhackathonspb.network.AcceptInviteService
 import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
+import com.example.prodhackathonspb.network.DeclineGroupInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
 import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
@@ -35,6 +36,7 @@ object DomainModule {
         getInvitesService: GetInvitesService,
         getUserGroupService: GetUserGroupService,
         addGroupService: AddGroupService,
+        declineGroupInviteService: DeclineGroupInviteService,
     ): Repository {
         return Repository(
             tokenHolder,
@@ -46,7 +48,8 @@ object DomainModule {
             createInviteService,
             getInvitesService,
             getUserGroupService,
-            addGroupService
+            addGroupService,
+            declineGroupInviteService
             )
     }
 }

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.prodhackathonspb.R
 import com.example.prodhackathonspb.databinding.ActivityGroupsBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,7 +39,10 @@ class ActivityGroups : AppCompatActivity() {
 
                     // При необходимости обработчик клика:
                     groupView.setOnClickListener {
-                        // открыть детали/чат/что нужно
+                        val dialog = BottomSheetDialog(this@ActivityGroups) // или requireContext() во фрагменте
+                        val view = layoutInflater.inflate(R.layout.dialog_window_group, null)
+                        dialog.setContentView(view)
+                        dialog.show()
                         Toast.makeText(this@ActivityGroups, "Клик по группе ${group.id}", Toast.LENGTH_SHORT).show()
                     }
                     binding.scrollViewForGroups.addView(groupView)
