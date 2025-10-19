@@ -27,45 +27,11 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Группа"
+                android:text="Шард"
                 android:textColor="@color/white"
                 android:textSize="21sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- ScrollView начинается от текста -->
-            <ScrollView
-                android:id="@+id/scrollView3"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scrollbars="none"
-                android:overScrollMode="never"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textGroups">
-
-                <LinearLayout
-                    android:id="@+id/scrollViewForShards"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <include layout="@layout/fragment_group_shard" />
-
-                    <include layout="@layout/fragment_group_shard" />
-
-                    <include layout="@layout/fragment_group_shard" />
-
-                    <include layout="@layout/fragment_group_shard" />
-
-                    <include layout="@layout/fragment_group_shard" />
-
-                    <include layout="@layout/fragment_group_shard" />
-
-                </LinearLayout>
-            </ScrollView>
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -77,6 +43,34 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/icon_plus" />
+
+            <!-- ScrollView начинается от текста -->
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textGroups"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:id="@+id/scrollViewForShards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/fragment_group_shard" />
+                    <include layout="@layout/fragment_group_shard" />
+                    <include layout="@layout/fragment_group_shard" />
+                    <include layout="@layout/fragment_group_shard" />
+                    <include layout="@layout/fragment_group_shard" />
+                    <include layout="@layout/fragment_group_shard" />
+
+                </LinearLayout>
+            </ScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
