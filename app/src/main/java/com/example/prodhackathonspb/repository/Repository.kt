@@ -2,6 +2,7 @@ package com.example.prodhackathonspb.repository
 
 import com.example.prodhackathonspb.login.data.TokenHolder
 import com.example.prodhackathonspb.network.AcceptInviteService
+import com.example.prodhackathonspb.network.AddGpuService
 import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
 import com.example.prodhackathonspb.network.DeclineGroupInviteService
@@ -9,6 +10,7 @@ import com.example.prodhackathonspb.network.GetInvitesService
 import com.example.prodhackathonspb.network.GetInvitesShardService
 import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
+import com.example.prodhackathonspb.network.GroupGpuAddService
 import com.example.prodhackathonspb.network.ServerStatusService
 import com.example.prodhackathonspb.network.ShardInviteAcceptService
 import com.example.prodhackathonspb.network.ShardInviteDeclineService
@@ -40,6 +42,8 @@ class Repository @Inject constructor(
     private val shardInviteAcceptService: ShardInviteAcceptService,
     private val shardInviteDeclineService: ShardInviteDeclineService,
     private val getInvitesShardService: GetInvitesShardService,
+    private val addGpuService: AddGpuService,
+    private val groupGpuAddService: GroupGpuAddService,
 ) {
     suspend fun checkStatus(): Boolean {
         return runCatching {
@@ -166,7 +170,7 @@ class Repository @Inject constructor(
     }
 
     // Создать приглашение
-    suspend fun createInvite(groupId: String, inviteeId: String): Boolean {
+    suspend fun createInviteGroup(groupId: String, inviteeId: String): Boolean {
         return try {
             val res = createInviteService.createInvite(
                 CreateInviteBody(groupId = groupId, inviteeId = inviteeId)

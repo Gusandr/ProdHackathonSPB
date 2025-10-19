@@ -1,6 +1,7 @@
 package com.example.prodhackathonspb.di
 
 import com.example.prodhackathonspb.network.AcceptInviteService
+import com.example.prodhackathonspb.network.AddGpuService
 import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
 import com.example.prodhackathonspb.network.DeclineGroupInviteService
@@ -8,6 +9,7 @@ import com.example.prodhackathonspb.network.GetInvitesService
 import com.example.prodhackathonspb.network.GetInvitesShardService
 import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
+import com.example.prodhackathonspb.network.GroupGpuAddService
 import com.example.prodhackathonspb.network.ServerStatusService
 import com.example.prodhackathonspb.network.ShardInviteAcceptService
 import com.example.prodhackathonspb.network.ShardInviteDeclineService
@@ -153,5 +155,17 @@ object NetworkModule {
     @Singleton
     fun provideC(retrofit: Retrofit): ShardInviteDeclineService {
         return retrofit.create(ShardInviteDeclineService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAA(retrofit: Retrofit): AddGpuService {
+        return retrofit.create(AddGpuService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBB(retrofit: Retrofit): GroupGpuAddService {
+        return retrofit.create(GroupGpuAddService::class.java)
     }
 }
