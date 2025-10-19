@@ -91,7 +91,7 @@
             android:fontFamily="@font/montserrat_light"
             android:gravity="center"
             android:text="Уже есть аккаунт? Войти"
-            android:textColor="#FFFFFF"
+            android:textColor="#B7B1FC"
             android:textSize="13sp" />
 
 
