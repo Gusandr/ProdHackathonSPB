@@ -3,6 +3,7 @@ package com.example.prodhackathonspb.di
 import com.example.prodhackathonspb.network.AcceptInviteService
 import com.example.prodhackathonspb.network.AddGroupService
 import com.example.prodhackathonspb.network.CreateInviteService
+import com.example.prodhackathonspb.network.DeclineGroupInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
 import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
@@ -125,5 +126,11 @@ object NetworkModule {
     @Singleton
     fun provideAddGroupService(retrofit: Retrofit): AddGroupService {
         return retrofit.create(AddGroupService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeclineGroupInviteService(retrofit: Retrofit): DeclineGroupInviteService {
+        return retrofit.create(DeclineGroupInviteService::class.java)
     }
 }
