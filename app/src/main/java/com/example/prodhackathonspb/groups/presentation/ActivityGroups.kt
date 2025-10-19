@@ -51,7 +51,14 @@ class ActivityGroups : AppCompatActivity() {
 
                     // Тут ещё можно добавить clickListener для shards/group settings
                     groupView.setOnClickListener {
-                        // Например, другой sheet или переход
+                        val bottomSheet = BottomSheetDialog(this@ActivityGroups)
+                        val sheetView = layoutInflater.inflate(R.layout.dialog_window_group, null).apply {
+//                            findViewById<ImageView>(R.id.imageView2)?.setOnClickListener {
+//                                bottomSheet.dismiss()
+//                            }
+                        }
+                        bottomSheet.setContentView(sheetView)
+                        bottomSheet.show()
                     }
 
                     binding.scrollViewForGroups.addView(groupView)
