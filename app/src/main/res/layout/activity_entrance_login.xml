@@ -82,17 +82,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/textIfNotHaveAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:fontFamily="@font/montserrat_light"
-            android:gravity="end"
-            android:text="Еще нет аккаунта?"
-            android:textColor="#FFFFFF"
-            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textView3"
@@ -102,8 +91,8 @@
             android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/montserrat_light"
-            android:gravity="start"
-            android:text="Зарегистрироваться"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Еще нет аккаунта? Зарегистрироваться"
             android:clickable="true"
             android:focusable="true"
             android:textColor="#B7B1FC"
