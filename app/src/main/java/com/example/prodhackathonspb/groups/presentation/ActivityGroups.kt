@@ -74,18 +74,18 @@ class ActivityGroups : AppCompatActivity() {
                         sheetView.findViewById<ImageView>(R.id.imageButtonSettings).setOnClickListener {
                             val bottomSheet = BottomSheetDialog(this@ActivityGroups)
                             val sheetView = layoutInflater.inflate(R.layout.fragment_adding_gpu, null)
+                            // Пример: обработчик "Добавить"/"Убрать" GPU
+                            sheetView.findViewById<FrameLayout>(R.id.buttonDecline)?.setOnClickListener {
+                                viewModel.addGpu(group.id)
+                                Toast.makeText(this@ActivityGroups, "Успех!", Toast.LENGTH_LONG).show()
+                            }
+                            sheetView.findViewById<FrameLayout>(R.id.buttonAccept)?.setOnClickListener {
+                                //Toast.makeText(this, "Убрать GPU у группы ${group.id}", Toast.LENGTH_SHORT).show()
+                                // Здесь можно вызвать метод во ViewModel → repository.removeGpuFromGroup()
+                            }
+
                             bottomSheet.setContentView(sheetView)
                             bottomSheet.show()
-                        }
-
-                        // Пример: обработчик "Добавить"/"Убрать" GPU
-                        sheetView.findViewById<FrameLayout>(R.id.buttonDecline)?.setOnClickListener {
-                            //Toast.makeText(this, "Добавить GPU в группу ${group.id}", Toast.LENGTH_SHORT).show()
-                            // Здесь можно вызвать метод во ViewModel → repository.addGpuToGroup()
-                        }
-                        sheetView.findViewById<FrameLayout>(R.id.buttonAccept)?.setOnClickListener {
-                            //Toast.makeText(this, "Убрать GPU у группы ${group.id}", Toast.LENGTH_SHORT).show()
-                            // Здесь можно вызвать метод во ViewModel → repository.removeGpuFromGroup()
                         }
 
                         // Показать bottom sheet
@@ -98,7 +98,7 @@ class ActivityGroups : AppCompatActivity() {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.errorFlow.collect {
-                Toast.makeText(this@ActivityGroups, it, Toast.LENGTH_LONG).show()
+
             }
         }
     }

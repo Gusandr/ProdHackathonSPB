@@ -10,6 +10,7 @@ import com.example.prodhackathonspb.network.GetInvitesService
 import com.example.prodhackathonspb.network.GetInvitesShardService
 import com.example.prodhackathonspb.network.GetUserGroupService
 import com.example.prodhackathonspb.network.GetUserService
+import com.example.prodhackathonspb.network.GroupBody
 import com.example.prodhackathonspb.network.GroupGpuAddService
 import com.example.prodhackathonspb.network.ServerStatusService
 import com.example.prodhackathonspb.network.ShardInviteAcceptService
@@ -187,5 +188,10 @@ class Repository @Inject constructor(
 
     suspend fun addGroup() {
         addGroupService.addGroup("Bearer ${tokenHolder.getToken() ?: throw Exception("No token!")}")
+    }
+
+    suspend fun addGpu(groupId: String) {
+        val gpu = addGpuService.addGpu("Bearer ${tokenHolder.getToken() ?: throw Exception("No token!")}")
+        groupGpuAddService.addGpu("Bearer ${tokenHolder.getToken() ?: throw Exception("No token!")}", groupId, GroupBody(gpu.id))
     }
 }

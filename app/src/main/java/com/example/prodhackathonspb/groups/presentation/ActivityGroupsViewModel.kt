@@ -46,4 +46,15 @@ class ActivityGroupsViewModel @Inject constructor(
             }
         }
     }
+
+    fun addGpu(groupId: String) {
+        viewModelScope.launch {
+            try {
+                repository.addGpu(groupId)
+                loadGroups() // Автообновление после добавления
+            } catch (e: Exception) {
+                _errorFlow.emit("Ошибка добавления группы: ${e.localizedMessage}")
+            }
+        }
+    }
 }
