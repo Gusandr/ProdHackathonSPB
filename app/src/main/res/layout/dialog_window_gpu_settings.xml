@@ -181,7 +181,7 @@
                                         android:layout_height="50dp"
                                         android:layout_marginTop="7dp"
                                         android:layout_weight="1"
-                                        android:background="@drawable/fragment_button_default">
+                                        android:background="@drawable/button_selector">
 
                                         <TextView
                                             android:id="@+id/textDecline"
@@ -201,7 +201,7 @@
                                         android:layout_marginStart="8dp"
                                         android:layout_marginTop="7dp"
                                         android:layout_weight="1"
-                                        android:background="@drawable/fragment_button_default">
+                                        android:background="@drawable/button_selector">
 
                                         <TextView
                                             android:id="@+id/textAccept"

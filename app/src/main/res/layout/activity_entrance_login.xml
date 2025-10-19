@@ -118,7 +118,7 @@
         android:layout_marginHorizontal="25dp"
         android:clickable="true"
         android:focusable="true"
-        android:background="@drawable/fragment_button_default"
+        android:background="@drawable/button_selector"
         app:layout_constraintBottom_toTopOf="@+id/linearForGoingToSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
