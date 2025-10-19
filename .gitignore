@@ -23,3 +23,4 @@ local.properties
 /app/release/baselineProfiles/1/app-release.dm
 /.kotlin/sessions/kotlin-compiler-1757153319905237161.salive
 /app/release/output-metadata.json
+.kotlin/sessions
