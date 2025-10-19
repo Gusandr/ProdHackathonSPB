@@ -56,7 +56,7 @@
             android:orientation="vertical">
 
             <!-- Карточка используемых GPU ресурсов -->
-<!--            <include layout="@layout/fragment_gpu_in_usage_main_menu" />-->
+            <include layout="@layout/fragment_gpu_in_usage_main_menu" />
 
             <!-- Заголовок группы карточек -->
 
