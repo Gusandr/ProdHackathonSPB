@@ -38,16 +38,27 @@
         app:layout_constraintStart_toStartOf="@+id/imageButtonBack"
         app:layout_constraintTop_toBottomOf="@+id/imageButtonBack" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/textProfile">
+
+        <include layout="@layout/fragment_adding_to_queue"/>
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:scrollbars="none"
         android:overScrollMode="never"
+        android:scrollbars="none"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textProfile">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <LinearLayout
             android:id="@+id/scrollViewForGroups"
@@ -56,11 +67,13 @@
             android:orientation="vertical">
 
             <!-- Первый Vertical LinearLayout -->
+
+            <!-- Второй Vertical LinearLayout -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView4"
@@ -76,12 +89,11 @@
 
             </LinearLayout>
 
-            <!-- Второй Vertical LinearLayout -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView5"
@@ -94,6 +106,7 @@
                     android:textSize="16sp" />
 
                 <include layout="@layout/fragment_user_card" />
+
                 <include layout="@layout/fragment_user_card" />
 
             </LinearLayout>
@@ -102,8 +115,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView6"
@@ -116,8 +129,11 @@
                     android:textSize="16sp" />
 
                 <include layout="@layout/fragment_user_card" />
+
                 <include layout="@layout/fragment_user_card" />
+
                 <include layout="@layout/fragment_user_card" />
+
                 <include layout="@layout/fragment_user_card" />
 
             </LinearLayout>
