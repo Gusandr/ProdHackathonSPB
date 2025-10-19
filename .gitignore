@@ -18,3 +18,8 @@ local.properties
 # Project exclude paths
 #/app/
 #/gradle/
+/app/release/app-release.apk
+/app/release/baselineProfiles/0/app-release.dm
+/app/release/baselineProfiles/1/app-release.dm
+/.kotlin/sessions/kotlin-compiler-1757153319905237161.salive
+/app/release/output-metadata.json

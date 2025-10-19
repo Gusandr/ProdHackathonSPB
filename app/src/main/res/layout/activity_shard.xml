@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Владельцы"
+                    android:text="Владелец"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
