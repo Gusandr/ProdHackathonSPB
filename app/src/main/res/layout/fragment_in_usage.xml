@@ -53,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_semibold"
-                        android:text="Использовать"
+                        android:text="Остановить"
                         android:textColor="#FFFFFF"
                         android:textSize="13sp" />
                 </FrameLayout>
