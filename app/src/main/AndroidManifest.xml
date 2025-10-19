@@ -41,6 +41,11 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".groups.presentation.ActivityGroups"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
 
         <activity
             android:name=".splash.presentation.SplashActivity"

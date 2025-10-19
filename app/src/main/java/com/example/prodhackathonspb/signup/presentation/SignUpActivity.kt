@@ -160,7 +160,7 @@ class SignUpActivity : AppCompatActivity() {
                         binding.editTextNumber.isEnabled = !isLoading
                         binding.editTextUserName.isEnabled = !isLoading
                         binding.editTextPassword.isEnabled = !isLoading
-                        binding.textView3.isEnabled = !isLoading
+                        binding.textView3.isEnabled = true
 
                         // Меняем текст кнопки
                         binding.textEntranceWithMail.text = if (isLoading) {

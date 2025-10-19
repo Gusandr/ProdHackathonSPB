@@ -1,4 +1,4 @@
-package com.example.prodhackathonspb.main.presentation
+package com.example.prodhackathonspb.menu.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,6 +31,18 @@ class MainMenuViewModel @Inject constructor(
             } catch (e: Exception) {
                 _uiState.value = MainMenuUiState(error = "Ошибка: ${e.localizedMessage}")
             }
+        }
+    }
+
+    // убедись, что метод в репозитории работает.
+    suspend fun addGroup(): Boolean {
+        return try {
+            repository.addGroup()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            _uiState.value = _uiState.value.copy(error = "Ошибка: ${e.localizedMessage}")
+            false
         }
     }
 }
