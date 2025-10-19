@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prodhackathonspb.R
 import com.example.prodhackathonspb.databinding.ActivityUserProfileBinding
 import com.example.prodhackathonspb.login.presentation.LoginActivity
@@ -52,6 +53,7 @@ class UserProfileActivity : AppCompatActivity() {
             onDecline = { inviteId -> viewModel.declineInvite(inviteId) }
         )
         binding.invitesRecycler.adapter = inviteAdapter
+        binding.invitesRecycler.layoutManager = LinearLayoutManager(this)
         binding.invitesRecycler.setHasFixedSize(true)
 
         observeViewModel()
@@ -88,4 +90,3 @@ class UserProfileActivity : AppCompatActivity() {
         }
     }
 }
-

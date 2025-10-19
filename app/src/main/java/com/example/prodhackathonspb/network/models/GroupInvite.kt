@@ -8,6 +8,6 @@ data class GroupInvite(
     val id: String,
     @SerialName("group_id") val groupId: String,
     @SerialName("inviter_id") val inviterId: String,
-    @SerialName("invitee_id") val inviteeId: User,
+    @SerialName("invitee_id") val inviteeId: String,
     val active: Boolean
 )

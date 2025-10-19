@@ -1,5 +1,6 @@
 package com.example.prodhackathonspb.di
 
+import com.example.prodhackathonspb.login.data.TokenHolder
 import com.example.prodhackathonspb.network.AcceptInviteService
 import com.example.prodhackathonspb.network.CreateInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
@@ -23,6 +24,7 @@ object DomainModule {
     @Singleton
     fun provideRepository(
         service: ServerStatusService,
+        tokenHolder: TokenHolder,
         serviceGetUser: GetUserService,
         serviceSignUpService: SignUpService,
         serviceSignInService: SignInService,
@@ -31,6 +33,7 @@ object DomainModule {
         getInvitesService: GetInvitesService,
     ): Repository {
         return Repository(
+            tokenHolder,
             service,
             serviceGetUser,
             serviceSignUpService,

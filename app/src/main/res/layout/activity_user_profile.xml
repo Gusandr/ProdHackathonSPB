@@ -28,163 +28,154 @@
         app:layout_constraintStart_toStartOf="@+id/imageButtonBack"
         app:layout_constraintTop_toBottomOf="@+id/imageButtonBack" />
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scrollbars="none"
-        android:overScrollMode="never"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- Карточка профиля -->
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/fragment_background_default_pole"
+        app:layout_constraintTop_toBottomOf="@id/textProfile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textProfile">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
 
-            <!-- Карточка профиля -->
-            <FrameLayout
-                android:id="@+id/frameLayout"
+            <ImageView
+                android:id="@+id/imageUserIcon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/icon_user_profile_default" />
+
+            <TextView
+                android:id="@+id/textUserMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:layout_marginTop="12dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/fragment_background_default_pole">
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="7.5dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_horizontal"
+                android:text="DevSquad@yandex.ru"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <FrameLayout
+                android:id="@+id/buttonLogout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/fragment_button_default">
+
+                <TextView
+                    android:id="@+id/textLogout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Выйти"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp" />
 
-                    <ImageView
-                        android:id="@+id/imageUserIcon"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="25dp"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:src="@drawable/icon_user_profile_default" />
-
-                    <TextView
-                        android:id="@+id/textUserMail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="30dp"
-                        android:layout_marginTop="7.5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:gravity="center_horizontal"
-                        android:text="DevSquad@yandex.ru"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                    <FrameLayout
-                        android:id="@+id/buttonLogout"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginHorizontal="30dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="25dp"
-                        android:background="@drawable/fragment_button_default">
-
-                        <TextView
-                            android:id="@+id/textLogout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Выйти"
-                            android:textColor="#FFFFFF"
-                            android:textSize="13sp" />
-
-                    </FrameLayout>
-                </LinearLayout>
-            </FrameLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/invitesRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintTop_toBottomOf="@id/frameLayout"
-                app:layout_constraintBottom_toTopOf="@id/quickAccessMainFrame"
-                android:overScrollMode="never"
-                tools:listitem="@layout/item_invite_profile" />
-
-            <!-- Фрейм с быстрыми ссылками -->
-            <FrameLayout
-                android:id="@+id/quickAccessMainFrame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/fragment_background_default_pole">
-
-                <LinearLayout
-                    android:id="@+id/quickAccessLinksContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center_vertical"
-                    android:layout_marginVertical="20dp"
-                    android:layout_marginHorizontal="25dp">
-
-                    <!-- Кнопка: Все группы -->
-                    <LinearLayout
-                        android:id="@+id/quickAccessGroupsButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-
-                        <ImageView
-                            android:id="@+id/quickAccessGroupsIcon"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_weight="0"
-                            android:src="@drawable/icon_user_group" />
-
-                        <LinearLayout
-                            android:id="@+id/quickAccessGroupsTextContainer"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3"
-                            android:orientation="vertical"
-                            android:layout_marginStart="10dp"
-                            android:gravity="center_vertical">
-
-                            <TextView
-                                android:id="@+id/quickAccessGroupsTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/montserrat_medium"
-                                android:text="Группы"
-                                android:textSize="15sp"
-                                android:textColor="@color/white" />
-
-                            <TextView
-                                android:id="@+id/quickAccessGroupsSubtitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/montserrat_light"
-                                android:text="Список моих групп"
-                                android:textSize="13sp"
-                                android:textColor="@color/white" />
-                        </LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/quickAccessGroupsArrow"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_weight="0"
-                            app:srcCompat="@drawable/icon_arrow_to_the_right" />
-                    </LinearLayout>
-                    <!-- Дополнительно: пользователи, отчеты, система — после этого по аналогии -->
-                </LinearLayout>
             </FrameLayout>
         </LinearLayout>
-    </ScrollView>
+    </FrameLayout>
+
+    <!-- Список приглашений -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/invitesRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout"
+        app:layout_constraintBottom_toTopOf="@id/quickAccessMainFrame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:overScrollMode="never"
+        tools:listitem="@layout/item_invite_profile" />
+
+    <!-- Фрейм с быстрыми ссылками -->
+    <FrameLayout
+        android:id="@+id/quickAccessMainFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/fragment_background_default_pole"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/quickAccessLinksContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="25dp">
+
+            <!-- Кнопка: Все группы -->
+            <LinearLayout
+                android:id="@+id/quickAccessGroupsButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/quickAccessGroupsIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="0"
+                    android:src="@drawable/icon_user_group" />
+
+                <LinearLayout
+                    android:id="@+id/quickAccessGroupsTextContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/quickAccessGroupsTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Группы"
+                        android:textSize="15sp"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/quickAccessGroupsSubtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_light"
+                        android:text="Список моих групп"
+                        android:textSize="13sp"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/quickAccessGroupsArrow"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/icon_arrow_to_the_right" />
+            </LinearLayout>
+            <!-- Здесь остальные быстрые кнопки -->
+        </LinearLayout>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

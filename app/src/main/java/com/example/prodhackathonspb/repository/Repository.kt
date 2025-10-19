@@ -1,5 +1,6 @@
 package com.example.prodhackathonspb.repository
 
+import com.example.prodhackathonspb.login.data.TokenHolder
 import com.example.prodhackathonspb.network.AcceptInviteService
 import com.example.prodhackathonspb.network.CreateInviteService
 import com.example.prodhackathonspb.network.GetInvitesService
@@ -18,6 +19,7 @@ import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 class Repository @Inject constructor(
+    private val tokenHolder: TokenHolder,
     private val service: ServerStatusService,
     private val getUserService: GetUserService,
     private val signUpService: SignUpService,
@@ -123,8 +125,9 @@ class Repository @Inject constructor(
     // Получить все инвайты текущего пользователя
     suspend fun getMyInvites(): List<GroupInvite> {
         return try {
-            getInvitesService.getInvites().invites
+            getInvitesService.getInvites("Bearer ${tokenHolder.getToken()?:throw Exception("null token")}").invites
         } catch (e: Exception) {
+            e.printStackTrace()
             // Можно вернуть пустой список либо пробросить ошибку выше
             emptyList()
         }
@@ -133,8 +136,8 @@ class Repository @Inject constructor(
     // Принять приглашение
     suspend fun acceptInvite(inviteId: String): Boolean {
         return try {
-            val res = acceptInviteService.acceptInvite(AcceptInviteBody(inviteId))
-            res.active
+            acceptInviteService.acceptInvite("Bearer ${tokenHolder.getToken()?:throw Exception("token is null!")}", AcceptInviteBody(inviteId))
+            true
         } catch (e: Exception) {
             false
         }

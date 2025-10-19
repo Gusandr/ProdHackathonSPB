@@ -19,8 +19,9 @@ class UserInviteAdapter(
 ) {
     inner class InviteViewHolder(val binding: ItemInviteProfileBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(invite: GroupInvite) {
-            binding.fromText.text = invite.inviterId // Можешь тут подгружать имя пригласителя с помощью своих данных
-            binding.groupText.text = invite.groupId
+            // тут подгрузи user по ID если нужно отобразить не только id, а имя:
+            binding.fromText.text = "От: ${invite.inviterId}"
+            binding.groupText.text = "Группа: ${invite.groupId}"
             binding.buttonAccept.setOnClickListener { onAccept(invite.id) }
             binding.buttonDecline.setOnClickListener { onDecline(invite.id) }
         }
